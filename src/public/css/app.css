@@ -105,3 +105,7 @@
     color: #a4b9cb;
     font-size: 12px;
 }
+
+.container-dashboard,.container-staffs{
+    display: none;
+}
