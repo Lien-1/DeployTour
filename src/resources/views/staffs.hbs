@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="/css/tour1.css">
+{{!-- source --}}
+<div>
+    <p class="header-tour-detail">Các địa điểm nổi tiếng</p>
+    {{!-- list img --}}
+    <div style="display: grid;grid-template-columns: 25% 25% 25% 25% ;grid-auto-rows:150px;margin:10px 50px 10px 50px">
+        {{#each img}}
+        <div>
+            <img src="{{this.url}}" alt="" class="tour-img">
+        </div>
+        {{/each}}
+    </div>
+    <p class="header-tour-detail">Mô tả</p>
+    <p class="detail-tour">
+        Đà Nẵng là một trong những thành phố sạch và đẹp nhất tại Việt Nam và là nơi tụ hội nhiều danh lam thắng cảnh
+        nổi tiếng như: Ngũ Hành Sơn, Đảo Cù lao Chàm, sông Hàn… cũng như nhiều khu vui chơi giải trí. Đặc biệt, Đà Nẵng
+        có nhiều cây cầu với kiến trúc độc đáo như Cầu Rồng, Cầu Sông Hàn…
+
+        Khi miền Trung, điển hình là Đà Nẵng và Nha Trang có nhiều thay đổi đáng kể theo dòng phát triển của đất nước
+        thì Hội An vẫn giữ được nét đẹp cổ kính và bình dị. Đến với Hội An, rời xa những bộn bề áp lực, Quý khách sẽ
+        được chiêm ngưỡng những mái nhà cổ kính phủ rêu phong, ẩn chứa vẻ đẹp huyền bí và cuốn hút của Phố cổ Hội An,
+        hiểu thêm về những phong tục tập quán, các tín ngưỡng cùng với các nghệ thuật dân gian, lễ hội truyền thống được
+        người dân địa phương gìn giữ và giới thiệu đến du khách.
+    </p>
+    <p class="header-tour-detail">Lịch trình cụ thể</p>
+    <div>
+        {{#each lichtrinh}}
+        <div style="display: grid;grid-template-columns: 45% 10% 45%;">
+            <div style="text-align: right;">
+                <span>{{this.NgayGio}}</span>
+                <span>11:20 - 12:40</span>
+            </div>
+            <div style="position: relative;float: left;">
+                <i class="fas fa-map-marker-alt" style="width: 100px;height: 30px;color: rgb(44, 89, 173);"></i>
+                <p style="border-left: 3px dashed rgb(44, 89, 173);height:40px;margin-left: 49%">
+                </p>
+            </div>
+            <div style="text-align: left;">
+                <span>Tiến hành đi du lịch</span>
+                <p>{{this.NoiDung}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{!-- overlay để hiện phóng to cái img --}}
+<div id="overlay-img-tour">
+    <img src="/img/tour1/hoian1.png" alt="" id="tour-img-zoom-in-overlay">
+</div>
+
+<script>
+    $('.tour-img').on('click', function () {
+        console.log($(this).attr('src'))
+        $('#tour-img-zoom-in-overlay').attr('src', $(this).attr('src'))
+        $('#overlay-img-tour').css('display', 'block')
+
+    })
+    $('#overlay-img-tour').on('click', function () {
+        $(this).css('display', 'none')
+
+    })
+    $('.container-item-tag').removeClass('active')
+    $('.container-item-tag').eq(1).addClass('active')
+    /////
+
+
+</script>

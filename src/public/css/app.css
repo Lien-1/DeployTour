@@ -1,9 +1,17 @@
 .container-item-tag {
-    display: grid;
-    grid-template-columns: 20% 80%;
-    /* background-color: antiquewhite; */
-    padding: 5px 10px 5px 10px;
-    background-color: transparent;
+    padding: 15px 10px 15px 20px;
+}
+
+.container-item-tag-header {
+    text-decoration: none;
+    color: #637381;
+    font-size: 16px;
+}
+
+.container-item-tag-icon {
+    color: #637381;
+    margin-right: 20px;
+    font-size: 20px;
 }
 
 .container-item-tag:hover {
@@ -14,41 +22,15 @@
     border-right: #00ab55 4px solid;
     background-color: #f4f6f8;
 }
-
-.container-item-tag.active .container-item-tag-header p {
+.container-item-tag.active .container-item-tag-header{
     color: #00ab55;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     text-transform: capitalize;
 }
-
-.container-item-tag.active .container-item-tag-logo svg {
+.container-item-tag.active .container-item-tag-icon{
     color: #00ab55;
 }
-
-.container-item-tag-logo {
-    text-align: center;
-    position: relative;
-}
-
-.container-item-tag-logo svg {
-    color: #637381;
-    width: 25px;
-    height: 25px;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.container-item-tag-header p {
-    font-size: 14px;
-    color: #637381;
-    margin-left: 10px;
-}
-
 /* right */
 
 .container-img-card {
@@ -108,4 +90,10 @@
 
 .container-dashboard,.container-staffs{
     display: none;
+}
+.container-menu{
+    display: none;
+}
+.container-menu.active{
+    display: block;
 }
