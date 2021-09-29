@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <div style="height: 100vh;width: 100vw">
+    <div>
         <div style="border-right: 1px rgb(235, 234, 234) solid;width: 280px;position: fixed;top: 0;bottom: 0;left: 0;">
             <img src="./img/logo.png" alt="" style="width: 80%;height: 120px;margin: 20px;">
             <div class="container-item-tag ">
@@ -68,10 +68,24 @@
             </div>
         </div>
         <!--layout  right -->
-        <div style="margin: 10px 10px 10px 10px;padding-left: 280px;" id="divMain">
+        <div style="padding-left: 280px;" id="divMain">
             {{{body}}}
         </div>
     </div>
 </body>
+<script>
+    $('.div-grid-page-right').on('click', function (e) {
+        $('.div-grid-page-right').removeClass('active')
+        $(this).addClass('active')
+        if ($(this).index() == 1) {
+            $('.content-right-grid-page-right').css('display', 'block')
+            $('.content-left-grid-page-right').css('display', 'none')
+        }
+        else if ($(this).index() == 0) {
+            $('.content-right-grid-page-right').css('display', 'none')
+            $('.content-left-grid-page-right').css('display', 'block')
+        }
+    })
+</script>
 
 </html>
