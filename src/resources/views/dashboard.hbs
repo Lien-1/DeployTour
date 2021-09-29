@@ -1,19 +1,29 @@
 <div style="display: grid; grid-template-columns: 50% 50%;margin: 10px 10px 10px 10px;">
+    {{#each tour}}
     <div class="container-img-card">
-        <img class="img-headerPosition" src="./img/vinhhalong/vinhhalong1.png" alt="">
-        <div class="overlay-img-headerPosition">
-            <p class="overlay-inside-date">20 November 2020</p>
-            <p class="overlay-inside-title">Tour : Ha Noi - Hai Phong - Quang Ninh</p>
-            <div class="overlay-inside-interaction">
-                <i class="fas fa-comment-dots overlay-inside-interaction-icon"></i>
-                <span class="overlay-inside-interaction-title">120k</span>
-                <i class="fas fa-eye overlay-inside-interaction-icon"></i>
-                <span class="overlay-inside-interaction-title">120k</span>
-                <i class="fas fa-share-alt overlay-inside-interaction-icon"></i>
-                <span class="overlay-inside-interaction-title">120k</span>
-            </div>
-        </div>
+        <form method="GET" hidden name="form-show-detailTour">
+            <input type="text" hidden name="TenTour" value="{{this.TenTour}}"> 
+            <input type="text" hidden name="MaTour" value="{{this.MaTour}}"> 
+            <input type="text" hidden name="ThoiGianTour" value="{{this.ThoiGianTour}}"> 
+            <input type="text" hidden name="MoTa" value="{{this.MoTa}}"> 
+        </form>
+            <a href="/tours/{{this.MaTour}}" class="tag-a-detail-tour">
+                <img class="img-headerPosition" src="{{this.AnhDaiDien}}" alt="">
+                <div class="overlay-img-headerPosition">
+                    <p class="overlay-inside-date">{{this.ThoiGianTour}}</p>
+                    <p class="overlay-inside-title">Tour : {{this.TenTour}} </p>
+                    <div class="overlay-inside-interaction">
+                        <i class="fas fa-comment-dots overlay-inside-interaction-icon"></i>
+                        <span class="overlay-inside-interaction-title">120k</span>
+                        <i class="fas fa-eye overlay-inside-interaction-icon"></i>
+                        <span class="overlay-inside-interaction-title">120k</span>
+                        <i class="fas fa-share-alt overlay-inside-interaction-icon"></i>
+                        <span class="overlay-inside-interaction-title">120k</span>
+                    </div>
+                </div>
+            </a>
     </div>
+    {{/each}}
     <div class="container-img-card">
         <img class="img-headerPosition" src="./img/hoian/hoian1.png" alt="">
         <div class="overlay-img-headerPosition">
@@ -30,27 +40,18 @@
         </div>
     </div>
 </div>
-<p>hieu</p>
-<div style="display: grid;grid-template-columns: 45% 10% 45%;">
-    <div style="text-align: right;">
-        <span>20 November 2021</span>
-        <span>11:20 - 12:40</span>
-    </div>
-    <div style="position: relative;float: left;">
-        <i class="fas fa-map-marker-alt" style="width: 100px;height: 30px;color: rgb(44, 89, 173);"></i>
-        <p style="border-left: 3px dashed rgb(44, 89, 173);height:40px;margin-left: 47%">
-        </p>
-    </div>
-    <div style="text-align: left;">
-        <span>Tiến hành đi du lịch</span>
-    </div>
-</div>
 
-{{#each lichtrinh}}
-<p>{{this.MaTour}}</p>
-{{/each}}
 <script>
+    let formDelete = document.forms['form-show-detailTour']
+
+
     $('.container-item-tag').removeClass('active')
     $('.container-item-tag').eq(0).addClass('active')
-
+    // ngăn k cho sự kiện của thẻ a đc chuyển trang, chúng ta sẽ chuyển trang bằng form 
+    $('.tag-a-detail-tour').on('click', function (e) {
+        e.preventDefault()
+        console.log(formDelete)
+        formDelete.action = '/detailTour'
+        formDelete.submit()
+    })
 </script>

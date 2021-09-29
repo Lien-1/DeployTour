@@ -1,4 +1,5 @@
 const LichTrinh = require('../models/LichTrinh')
+const Tour = require('../models/Tour')
 const cloudinary = require('cloudinary');
 let arrImg
 
@@ -17,7 +18,6 @@ cloudinary.v2.api.resources({
     arrImg = result
 });
 
-
 class homeControllers {
     //GET /
     showHome(req, res) {
@@ -26,14 +26,17 @@ class homeControllers {
     }
 
     showDashboard(req, res) {
-        LichTrinh.find({})
-            .then(lichtrinh => res.render('dashboard'))
+        Tour.find({}).lean()
+            .then(tour => res.render('dashboard', {
+                tour,
+
+            }))
     }
     showStaffs(req, res) {
         LichTrinh.find({}).lean()
             .then(lichtrinh => res.render('staffs', {
                 img: arrImg["resources"],
-                lichtrinh : lichtrinh,
+                lichtrinh: lichtrinh,
             }))
 
         // res.send(arrImg)
@@ -41,9 +44,30 @@ class homeControllers {
     showCustomers(req, res) {
         res.render('customers')
     }
+    showDetailTour(req, res) {
+        // res.send(req.query)
+        cloudinary.v2.api.resources({
+            type: 'upload',
+            prefix: `TourDuLich/${req.query.MaTour}` // add your folder   
+        }, function (error, result) {
+            // console.log(result, error)
+            arrImg = result
+        });
+
+        LichTrinh.find({ MaTour: req.query.MaTour }).lean()
+            .then(lichtrinh => res.render('detailtour', {
+                lichtrinh,
+                TenTour: req.query.TenTour,
+                ThoiGianTour: req.query.ThoiGianTour,
+                MoTa: req.query.MoTa,
+                img: arrImg["resources"],
+            })
+            )
+    }
     showTours(req, res) {
         res.render('tours')
     }
+
     showStatistics(req, res) {
         res.render('statistics')
     }
