@@ -152,3 +152,66 @@
 .div-grid-page-right.active .title-grid-page-right {
     color: white;
 }
+
+/* khung search của mỗi cái page */
+.container-search-content{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255,0.7);
+    margin-left: 280px;
+    padding: 20px;
+}
+.search-content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: white;
+    margin-left: 280px;
+    transform: translateY(-100%);
+    /* opacity: 0; */
+    transition: transform linear 0.3s;
+}
+
+.overlay-search-content {
+    margin: 20px 20px 20px 20px;
+}
+
+.icon-search-content {
+    font-size: 25px;
+}
+
+.overlay-input-search-content {
+    width: 730px;
+    height: 40px;
+    border: transparent;
+    outline: none;
+    font-size: 20px
+}
+
+.overlay-button-search-content {
+    color: white;
+    background-color: #00ab55;
+    padding: 10px;
+    border: transparent;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.overlay-under-search-content {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    display: none;
+}
+.checkbox-search-content:checked ~ .overlay-under-search-content{
+    display: block;
+}
+.checkbox-search-content:checked ~ .search-content{
+    transform: translateY(0);
+}

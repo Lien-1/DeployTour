@@ -1,7 +1,125 @@
+<link rel="stylesheet" href="/css/addTour.css">
+<div>
+    <div class="container-search-content">
+        <input type="checkbox" hidden id="checkbox-search-content" class="checkbox-search-content">
+        <label for="checkbox-search-content">
+            <i class="fas fa-search icon-search-content"></i>
+        </label>
+        <label class="overlay-under-search-content" for="checkbox-search-content"></label>
+        <div class="search-content">
+            <div class="overlay-search-content">
+                <i class="fas fa-search icon-search-content"></i>
+                <input type="text" class="overlay-input-search-content">
+                <button class="overlay-button-search-content">Search</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 70px;"></div>
+    <button class="button-open-add-new-item-overlay">Add new tour</button>
 
-<p>tours</p>
+</div>
+<div class="overlay-add-new-item">
+    <div class="container-add-new-item">
+        {{!-- code content here --}}
+        <form>
+            <p class="title-tour-overlay-add-new-item">Add new tour</p>
+            <div style="display:grid;grid-template-columns:30% 70% ; margin:10px;">
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Mã Tour</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Tên Tour</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+            </div>
+            <div style="display:grid;grid-template-columns:25% 25% 25% 25%; margin:10px;">
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Mã Loại Tour</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Giá Tour</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Tên Loại Tour</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+                <div class="container-fieldset-overlay-add-new-item">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Thời gian</legend>
+                        <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                    </fieldset>
+                </div>
+            </div>
+            <div style="margin: 20px;">
+                <fieldset class="fieldset-overlay-add-new-item">
+                    <legend class="legend-overlay-add-new-item">Mô tả</legend>
+                    <textarea name="" id="" rows="5" class="input-inside-fieldset-overlay-add-new-item"></textarea>
+                </fieldset>
+            </div>
+            <div style="margin: 20px;">
+                <span style="font-weight:600;font-size:15px" >Lịch trình chuyến đi </span>
+                <button class="button-add-new-action-overlay-add-new-item">
+                    <span>Thêm sự kiện </span>
+                </button>
+            </div>
+            {{!-- add 1 cái sự kiện mới cho lịch trình --}}
+            <div id="container-add-new-event-overlay-add-new-item">
+                <div style="display:grid;grid-template-columns:30% 70% ; margin:5px 10px 5px 10px;">
+                    <div class="container-fieldset-overlay-add-new-item">
+                        <fieldset class="fieldset-overlay-add-new-item">
+                            <legend class="legend-overlay-add-new-item">Mã Tour</legend>
+                            <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                        </fieldset>
+                    </div>
+                    <div class="container-fieldset-overlay-add-new-item">
+                        <fieldset class="fieldset-overlay-add-new-item">
+                            <legend class="legend-overlay-add-new-item">Tên Tour</legend>
+                            <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                        </fieldset>
+                    </div>
+                </div>
+                <div style="margin:5px 20px 5px 20px;">
+                    <fieldset class="fieldset-overlay-add-new-item">
+                        <legend class="legend-overlay-add-new-item">Mô tả</legend>
+                        <textarea name="" id="" rows="3" class="input-inside-fieldset-overlay-add-new-item"></textarea>
+                    </fieldset>
+                </div>
+                <hr class="hr-overlay-add-new-item">
+            </div>
+            {{!-- add img --}}
+            <div style="margin: 20px;">
+                <span style="font-size: 12px;color:rgb(184, 184, 184)">Thêm ảnh hoặc địa điểm nổi tiếng</span>
+                <span  style="font-size: 12px;color:#00ab55;cursor: pointer;" id="upload_widget">Chọn ảnh</span>
+            </div>
+            {{!--cancel save --}}
+            <div style="text-align: center;">
+                <button class="btn-add-new-item cancel">Cancel</button>
+                <button class="btn-add-new-item save">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{!-- viết code html với css phía trên --}}
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+{{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}
+<script src="util/tours.js"></script>
+
 <script>
     $('.container-item-tag').removeClass('active')
     $('.container-item-tag').eq(3).addClass('active')
-    
 </script>

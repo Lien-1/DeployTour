@@ -1,0 +1,85 @@
+/* overlay cái khung nhập item mới */
+
+.overlay-add-new-item {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform linear 0.3s;
+}
+
+.container-add-new-item {
+    border: 1px solid transparent;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 50px;
+    width: 800px;
+    height: 500px;
+    overflow: auto;
+    padding: 20px;
+}
+
+.title-tour-overlay-add-new-item {
+    margin: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #00ab55;
+}
+
+.container-fieldset-overlay-add-new-item {
+    margin: 10px;
+}
+
+.fieldset-overlay-add-new-item {
+    border-radius: 10px;
+    border: 1px solid #00ab55;
+    width: 100%;
+    
+}
+
+.legend-overlay-add-new-item {
+    color: #999999;
+}
+
+.input-inside-fieldset-overlay-add-new-item {
+    width: 100%;
+    border: transparent;
+    outline: none;
+    resize: none;
+}
+
+.button-add-new-action-overlay-add-new-item {
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+.hr-overlay-add-new-item{
+    border: 0.5px solid #8fdab4 ;
+    width: 80%;
+    margin-top: 15px;
+}
+/* button cancel save */
+
+.btn-add-new-item {
+    border-radius: 30px;
+    font-size: 15px;
+    padding: 7px 0 7px 0;
+    width: 90px;
+    margin: 10px;
+}
+
+.btn-add-new-item.cancel, .btn-add-new-item.save:hover {
+    color: #00ab55;
+    border: 1px #00ab55 solid;
+    background-color: rgb(240, 240, 240);
+}
+
+.btn-add-new-item.save, .btn-add-new-item.cancel:hover {
+    color: white;
+    border: 1px transparent solid;
+    background-color: #00ab55;
+}
