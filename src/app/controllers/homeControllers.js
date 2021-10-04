@@ -1,5 +1,6 @@
 const LichTrinh = require('../models/LichTrinh')
 const Tour = require('../models/Tour')
+const LoaiTour = require('../models/LoaiTour')
 const cloudinary = require('cloudinary');
 let arrImg
 
@@ -64,15 +65,112 @@ class homeControllers {
             })
             )
     }
+
+    //GET /tours
     showTours(req, res) {
-        res.render('tours')
+        let joinTourAndLichTrinh = Tour.aggregate([
+            {
+                $lookup: {
+                    from: "loaitours",       // other table name
+                    localField: "MaLoaiTour",   // name of users table field
+                    foreignField: "MaLoaiTour", // name of userinfo table field
+                    as: "loaitours"         // alias for userinfo table
+                }
+            },
+            { $unwind: "$loaitours" },     // $unwind used for getting data in object or for one record only
+
+            {
+                $project: {
+                    MaTour: 1,
+                    TenTour: 1,
+                    ThoiGianTour: 1,
+                    TenLoaiTour: "$loaitours.TenLoaiTour",
+                    MaLoaiTour: "$loaitours.MaLoaiTour",
+
+                }
+            }
+        ])
+       
+        Promise.all([joinTourAndLichTrinh, Tour.find().lean(), LoaiTour.find().lean()])
+            .then(values => {
+                let [tableTours, tours, loaitours] = values
+                let maxTour =getLastMaTour(tours)
+                // console.log(maxTour)
+                console.log(loaitours)
+                res.render('tours', {
+                            tableTours,
+                            "maxTour" :[{max : maxTour}],
+                            loaitours,
+                        })
+            })
+    }
+
+    editTour(req, res) {
+        let listTour = Tour.find({ MaTour: req.params.slug }).lean()
+        let listLichTrinh = LichTrinh.find({ MaTour: req.params.slug }).lean()
+        Promise.all([listTour, listLichTrinh]).then(data => {
+            let [tours, lichtrinhs] = data
+            res.render('tours/editTour', {
+                tours,
+                lichtrinhs,
+            })
+        })
     }
 
     showStatistics(req, res) {
         res.render('statistics')
     }
 
+    // handle edit tour
+    handleEditTour(req, res) {
+        let updateTour = Tour.updateOne({ MaTour: req.body.MaTour }, { TenTour: req.body.TenTour, MoTa: req.body.MoTa })
+        let updateLichTrinh = convertObj(req.body)
+        //     .then(()=> res.redirect('/tours'))
+        Promise.all([updateTour, updateLichTrinh])
+            .then(() => res.redirect('/tours'))
+    }
 
 }
 
 module.exports = new homeControllers()
+
+function getLastMaTour(tours) {
+
+    let maxNumberMaTour = parseInt(tours[tours.length - 1].MaTour.split('MT')[1]) + 1
+    let maxMaTour = "MT" + maxNumberMaTour
+    console.log(maxMaTour)
+    return maxMaTour
+
+}
+function convertObj(body) {
+    let { MaTour, TenTour, MoTa, ...lichtrinh } = body
+    // console.log(convertDoubleObj(lichtrinh))
+    convertDoubleObj(lichtrinh).forEach(element => {
+        LichTrinh.updateOne({ "MaTour": MaTour, "SoThuTuDiaDiem": element.SoThuTuDiaDiem }, { "NoiDung": element.NoiDung, "NgayGio": element.NgayGio })
+            .then((success) => console.log(success))
+        // console.log({ NoiDung: element.NoiDung, NgayGio: element.NgayGio })
+
+    })
+}
+function convertDoubleObj(obj) {
+    let arr = []
+    let i = 0
+    let sum = 0
+    let ngaygio
+    for (const index in obj) {
+        ++sum
+        ++i
+        if (i != 2) {
+            ngaygio = obj[index]
+        }
+        else {
+            arr.push({
+                SoThuTuDiaDiem: sum / 2,
+                NgayGio: ngaygio,
+                NoiDung: obj[index],
+            })
+            i = 0
+        }
+    }
+    return arr
+}

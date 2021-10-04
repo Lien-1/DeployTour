@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/detailTour.css">
+
+{{!-- source --}}
+<div style="margin: 10px;">
+    <table style="width:auto">
+        <tr>
+            <td id="border-icon-back-detail-tour">
+                <a href="/tours" style="text-decoration: none;">
+                    <i class="fas fa-arrow-circle-left icon-back-detail-tour"></i>
+                </a>
+            </td>
+            <td style="background-color: white;">
+                {{#each tours}}
+                <span class="title-detail-tour">Edit Tour : {{this.TenTour}}</span>
+                <span class="title-detail-tour timetour"> {{this.ThoiGianTour}} </span>
+                {{/each}}
+            </td>
+        </tr>
+    </table>
+    <form action="/handle/editTour" method="POST">
+        {{#each tours}}
+        <label for="">Mã Tour</label>
+        <input type="text" name="MaTour" id="edit-tour-MaTour" readonly value="{{this.MaTour}}">
+        <label for="">Tên Tour</label>
+        <input type="text" name="TenTour" id="edit-tour-TenTour" value="{{this.TenTour}}">
+        <label for="">Mô tả</label>
+        <textarea name="MoTa" id="" cols="30" rows="10">{{this.MoTa}}</textarea>
+        {{/each}}
+        {{!-- lịch trình --}}
+        {{#each lichtrinhs}}
+        <div>
+            <label for="">Số thứ tự địa điểm {{this.SoThuTuDiaDiem}}</label>
+            <input type="text" name="{{this.SoThuTuDiaDiem}}-NgayGio"  value="{{this.NgayGio}}">
+            <textarea name="{{this.SoThuTuDiaDiem}}-NoiDung" id="" cols="30" rows="10">{{this.NoiDung}}</textarea>
+        </div>
+        {{/each}}
+        <button>Lưu thay đổi</button>
+    </form>
+</div>
+
+
+<script>
+    $('.container-item-tag').removeClass('active')
+    $('.container-item-tag').eq(3).addClass('active')
+</script>

@@ -17,34 +17,67 @@ document.getElementById("upload_widget").addEventListener("click", function () {
 // click (thêm sự kiện) hiện ra 1 ô nữa ở dưới 
 $('.button-add-new-action-overlay-add-new-item').on('click', function (e) {
     e.preventDefault()
+    let numberClass = $('.container-layout-add-new-tour').length
     $('#container-add-new-event-overlay-add-new-item').append(`
-    
-    <div style="display:grid;grid-template-columns:30% 70% ; margin:5px 10px 5px 10px;">
+    <div class="container-layout-add-new-tour">
+    <div style=" margin:5px 10px 5px 10px;">
+        <span>Số thứ tự địa điểm ${numberClass+1}</span>
+        <span class="cancel-SoThuTuDiaDiem">
+            <i class="fas fa-trash-alt " style="width: 20px;cursor:pointer"></i>
+        </span>
         <div class="container-fieldset-overlay-add-new-item">
             <fieldset class="fieldset-overlay-add-new-item">
-                <legend class="legend-overlay-add-new-item">Mã Tour</legend>
-                <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
-            </fieldset>
-        </div>
-        <div class="container-fieldset-overlay-add-new-item">
-            <fieldset class="fieldset-overlay-add-new-item">
-                <legend class="legend-overlay-add-new-item">Tên Tour</legend>
+                <legend class="legend-overlay-add-new-item">Ngày giờ</legend>
                 <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
             </fieldset>
         </div>
     </div>
     <div style="margin:5px 20px 5px 20px;">
         <fieldset class="fieldset-overlay-add-new-item">
-            <legend class="legend-overlay-add-new-item">Mô tả</legend>
-            <textarea name="" id="" rows="3" class="input-inside-fieldset-overlay-add-new-item"></textarea>
+            <legend class="legend-overlay-add-new-item">Nội dung</legend>
+            <textarea name="" id="" rows="3"
+                class="input-inside-fieldset-overlay-add-new-item"></textarea>
         </fieldset>
     </div>
     <hr class="hr-overlay-add-new-item">
-
+</div>
     `)
-
+})
+// click xóa 1 sự kiện
+$('.cancel-SoThuTuDiaDiem').on('click', function (e) {
+    let index = $('.cancel-SoThuTuDiaDiem').index(this)
+    console.log($('.container-layout-add-new-tour').eq(index))
 })
 
-$('.button-open-add-new-item-overlay').on('click',function(){
-    $('.overlay-add-new-item').css('transform','translateY(0)')
+
+$('.button-open-add-new-item-overlay').on('click', function () {
+    $('.overlay-add-new-item').css('transform', 'translateY(0)')
+})
+
+// button edit  , show tour
+$('.btn-edit-tour').on('click', function (e) {
+    let MaTour = $('.btn-edit-tour').attr('data-totalReview')
+    window.location.href = `/tours/edit/${MaTour}`
+    return false
+
+})
+$('.btn-show-tour').on('click', function (e) {
+    let index = $('.btn-show-tour').index(this)
+
+    if ($('.icon-show-tour').eq(index).css('display') == 'none') {
+        $('.icon-show-tour').eq(index).css('display', 'block')
+        $('.icon-not-show-tour').eq(index).css('display', 'none')
+    }
+    else {
+        $('.icon-show-tour').eq(index).css('display', 'none')
+        $('.icon-not-show-tour').eq(index).css('display', 'block')
+    }
+
+
+
+})
+// button cancel, save
+$('.btn-add-new-item.cancel').on('click', function (e) {
+    e.preventDefault()
+    $('.overlay-add-new-item').css('transform', 'translateY(-100%)')
 })

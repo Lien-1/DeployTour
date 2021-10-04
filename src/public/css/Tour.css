@@ -1,6 +1,6 @@
 /* overlay cái khung nhập item mới */
 
-.overlay-add-new-item {
+.overlay-add-new-item,.overlay-edit-tour {
     position: fixed;
     top: 0;
     bottom: 0;

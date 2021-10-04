@@ -1,21 +1,21 @@
 <link rel="stylesheet" href="/css/detailTour.css">
 {{!-- source --}}
 <div style="margin: 10px;">
-    <table>
+    <table style="width:auto">
         <tr>
             <td id="border-icon-back-detail-tour" >
                 <a href="/dashboard" style="text-decoration: none;">
                     <i class="fas fa-arrow-circle-left icon-back-detail-tour"></i>
                 </a>
             </td>
-            <td>
+            <td style="background-color: white;">
                 <span class="title-detail-tour">Tour : {{TenTour}}</span>
                 <span class="title-detail-tour timetour">( {{ThoiGianTour}} )</span>
             </td>
         </tr>
     </table>
 
-    <p class="header-tour-detail">Các địa điểm nổi tiếng</p>
+    <p class="header-title">Các địa điểm nổi tiếng</p>
     {{!-- list img --}}
     <div style="display: grid;grid-template-columns: 25% 25% 25% 25% ;grid-auto-rows:150px;margin:10px 50px 10px 50px">
         {{#each img}}
@@ -24,11 +24,11 @@
         </div>
         {{/each}}
     </div>
-    <p class="header-tour-detail">Mô tả</p>
+    <p class="header-title">Mô tả</p>
     <p class="detail-tour">
        {{MoTa}}
     </p>
-    <p class="header-tour-detail">Lịch trình cụ thể</p>
+    <p class="header-title">Lịch trình cụ thể</p>
     <div>
         {{#each lichtrinh}}
         <div style="display: grid;grid-template-columns: 45% 10% 45%;">
