@@ -1,17 +1,20 @@
 <link rel="stylesheet" href="/css/detailTour.css">
 {{!-- source --}}
+
 <div style="margin: 10px;">
     <table style="width:auto">
         <tr>
-            <td id="border-icon-back-detail-tour" >
+            <td id="border-icon-back-detail-tour">
                 <a href="/dashboard" style="text-decoration: none;">
                     <i class="fas fa-arrow-circle-left icon-back-detail-tour"></i>
                 </a>
             </td>
+            {{#each detailTour}}
             <td style="background-color: white;">
-                <span class="title-detail-tour">Tour : {{TenTour}}</span>
-                <span class="title-detail-tour timetour">( {{ThoiGianTour}} )</span>
+                <span class="title-detail-tour">Tour : {{this.TenTour}}</span>
+                <span class="title-detail-tour timetour">( {{this.ThoiGianTour}} )</span>
             </td>
+            {{/each}}
         </tr>
     </table>
 
@@ -26,11 +29,13 @@
     </div>
     <p class="header-title">Mô tả</p>
     <p class="detail-tour">
-       {{MoTa}}
+        {{#each detailTour}}
+        {{this.MoTa}}
+        {{/each}}
     </p>
     <p class="header-title">Lịch trình cụ thể</p>
     <div>
-        {{#each lichtrinh}}
+        {{#each detailLichTrinh}}
         <div style="display: grid;grid-template-columns: 45% 10% 45%;">
             <div style="text-align: right;">
                 <span>{{this.NgayGio}}</span>
@@ -42,7 +47,7 @@
                 </p>
             </div>
             <div style="text-align: left;">
-                <span>Tiến hành đi du lịch</span>
+                <span>Nội dung:</span>
                 <p>{{this.NoiDung}}</p>
             </div>
         </div>
@@ -69,3 +74,4 @@
     $('.container-item-tag').eq(3).addClass('active')
 
 </script>
+ 

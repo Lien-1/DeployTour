@@ -63,15 +63,15 @@
 <div class="overlay-add-new-item">
     <div class="container-add-new-item">
         {{!-- code content here --}}
-        <form>
+        <form method="POST" action="/handle/addTour" name="form-add-new-tour">
             <p class="title-tour-overlay-add-new-item">Thêm tour mới</p>
             <div style="display:grid;grid-template-columns:30% 70% ; margin:10px;">
                 <div class="container-fieldset-overlay-add-new-item">
                     <fieldset class="fieldset-overlay-add-new-item">
                         <legend class="legend-overlay-add-new-item">Mã Tour</legend>
                         {{#each maxTour}}
-                        <input type="text" name="MaTour" id="" readonly
-                            class="input-inside-fieldset-overlay-add-new-item" value="{{this.max}}">
+                        <input type="text" name="MaTour" id="MaTour-addTour" readonly
+                            class="input-inside-fieldset-overlay-add-new-item" value="{{this.max}}" data-MaTour="{{this.max}}">
                         {{/each}}
                     </fieldset>
                 </div>
@@ -94,7 +94,7 @@
                         <legend class="legend-overlay-add-new-item">Tên Loại Tour</legend>
                         {{!-- <input type="text" name="TenLoaiTour" id=""
                             class="input-inside-fieldset-overlay-add-new-item"> --}}
-                        <select name="LoaiTour" id="" class="input-inside-fieldset-overlay-add-new-item">
+                        <select name="MaLoaiTour" id="" class="input-inside-fieldset-overlay-add-new-item">
                             {{#each loaitours}}
                             <option value="{{this.MaLoaiTour}}">{{this.TenLoaiTour}}</option>
                             {{/each}}
@@ -126,19 +126,19 @@
                     <div style=" margin:5px 10px 5px 10px;">
                         <span>Số thứ tự địa điểm 1</span>
                         <span class="cancel-SoThuTuDiaDiem">
-                            <i class="fas fa-trash-alt " style="width: 20px;cursor:pointer"></i>
+                            {{!-- <i class="fas fa-trash-alt " style="width: 20px;cursor:pointer"></i> --}}
                         </span>
                         <div class="container-fieldset-overlay-add-new-item">
                             <fieldset class="fieldset-overlay-add-new-item">
                                 <legend class="legend-overlay-add-new-item">Ngày giờ</legend>
-                                <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                                <input type="text" name="1-NgayGio" id="" class="input-inside-fieldset-overlay-add-new-item">
                             </fieldset>
                         </div>
                     </div>
                     <div style="margin:5px 20px 5px 20px;">
                         <fieldset class="fieldset-overlay-add-new-item">
                             <legend class="legend-overlay-add-new-item">Nội dung</legend>
-                            <textarea name="" id="" rows="3"
+                            <textarea name="1-NoiDung" id="" rows="3"
                                 class="input-inside-fieldset-overlay-add-new-item"></textarea>
                         </fieldset>
                     </div>

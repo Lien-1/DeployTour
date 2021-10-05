@@ -3,7 +3,7 @@
 var myWidget = cloudinary.createUploadWidget({
     cloudName: 'di2u0wa8l',
     uploadPreset: 'ml_default',
-    folder: 'TourDuLich/mt2', // chỉnh lại forder
+    folder: `TourDuLich/${$('#MaTour-addTour').attr('data-MaTour')}`, // chỉnh lại forder
 }, (error, result) => {
     if (!error && result && result.event === "success") {
         console.log('Done! Here is the image info: ', result.info);
@@ -21,21 +21,21 @@ $('.button-add-new-action-overlay-add-new-item').on('click', function (e) {
     $('#container-add-new-event-overlay-add-new-item').append(`
     <div class="container-layout-add-new-tour">
     <div style=" margin:5px 10px 5px 10px;">
-        <span>Số thứ tự địa điểm ${numberClass+1}</span>
+        <span>Số thứ tự địa điểm ${numberClass + 1}</span>
         <span class="cancel-SoThuTuDiaDiem">
             <i class="fas fa-trash-alt " style="width: 20px;cursor:pointer"></i>
         </span>
         <div class="container-fieldset-overlay-add-new-item">
             <fieldset class="fieldset-overlay-add-new-item">
                 <legend class="legend-overlay-add-new-item">Ngày giờ</legend>
-                <input type="text" name="" id="" class="input-inside-fieldset-overlay-add-new-item">
+                <input type="text" name="${numberClass + 1}-NgayGio" id="" class="input-inside-fieldset-overlay-add-new-item">
             </fieldset>
         </div>
     </div>
     <div style="margin:5px 20px 5px 20px;">
         <fieldset class="fieldset-overlay-add-new-item">
             <legend class="legend-overlay-add-new-item">Nội dung</legend>
-            <textarea name="" id="" rows="3"
+            <textarea name="${numberClass + 1}-NoiDung" id="" rows="3"
                 class="input-inside-fieldset-overlay-add-new-item"></textarea>
         </fieldset>
     </div>
@@ -44,10 +44,12 @@ $('.button-add-new-action-overlay-add-new-item').on('click', function (e) {
     `)
 })
 // click xóa 1 sự kiện
-$('.cancel-SoThuTuDiaDiem').on('click', function (e) {
+$('body').on('click', '.cancel-SoThuTuDiaDiem', () => {
     let index = $('.cancel-SoThuTuDiaDiem').index(this)
     console.log($('.container-layout-add-new-tour').eq(index))
+    $('.container-layout-add-new-tour').eq(index).remove()
 })
+
 
 
 $('.button-open-add-new-item-overlay').on('click', function () {
@@ -80,4 +82,13 @@ $('.btn-show-tour').on('click', function (e) {
 $('.btn-add-new-item.cancel').on('click', function (e) {
     e.preventDefault()
     $('.overlay-add-new-item').css('transform', 'translateY(-100%)')
+
+})
+$('.btn-add-new-item.save').on('click', function (e) {
+    e.preventDefault()
+    // settimeout để có thời gian cho cái ảnh nó tải lên xong
+    setTimeout(function () {
+        let form = document.forms['form-add-new-tour']
+        form.submit()
+    }, 5000)
 })

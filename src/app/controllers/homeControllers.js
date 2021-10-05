@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const LichTrinh = require('../models/LichTrinh')
 const Tour = require('../models/Tour')
 const LoaiTour = require('../models/LoaiTour')
@@ -46,24 +47,29 @@ class homeControllers {
         res.render('customers')
     }
     showDetailTour(req, res) {
-        // res.send(req.query)
-        cloudinary.v2.api.resources({
+        let MaTour = req.params.MaTour
+        // lấy ảnh từ cloud
+        let getImgFromCloud = cloudinary.v2.api.resources({
             type: 'upload',
-            prefix: `TourDuLich/${req.query.MaTour}` // add your folder   
+            prefix: `TourDuLich/${MaTour}` // add your folder   
         }, function (error, result) {
             // console.log(result, error)
             arrImg = result
         });
+        let tour = Tour.find({ "MaTour": MaTour }).lean()
+        let lichtrinhs = LichTrinh.find({ "MaTour": MaTour }).lean()
+         
+        Promise.all([tour, lichtrinhs, getImgFromCloud])
+            .then(values => {
+                let [detailTour, detailLichTrinh, ...p] = values
+                console.log(detailTour, detailLichTrinh)
+                res.render('tours/detailtour',{
+                    detailTour,
+                    detailLichTrinh,
+                    img: arrImg["resources"],
+                })
 
-        LichTrinh.find({ MaTour: req.query.MaTour }).lean()
-            .then(lichtrinh => res.render('detailtour', {
-                lichtrinh,
-                TenTour: req.query.TenTour,
-                ThoiGianTour: req.query.ThoiGianTour,
-                MoTa: req.query.MoTa,
-                img: arrImg["resources"],
             })
-            )
     }
 
     //GET /tours
@@ -90,18 +96,18 @@ class homeControllers {
                 }
             }
         ])
-       
+
         Promise.all([joinTourAndLichTrinh, Tour.find().lean(), LoaiTour.find().lean()])
             .then(values => {
                 let [tableTours, tours, loaitours] = values
-                let maxTour =getLastMaTour(tours)
+                let maxTour = getLastMaTour(tours)
                 // console.log(maxTour)
                 console.log(loaitours)
                 res.render('tours', {
-                            tableTours,
-                            "maxTour" :[{max : maxTour}],
-                            loaitours,
-                        })
+                    tableTours,
+                    "maxTour": [{ max: maxTour }],
+                    loaitours,
+                })
             })
     }
 
@@ -121,7 +127,7 @@ class homeControllers {
         res.render('statistics')
     }
 
-    // handle edit tour
+    // [POST] handle edit tour
     handleEditTour(req, res) {
         let updateTour = Tour.updateOne({ MaTour: req.body.MaTour }, { TenTour: req.body.TenTour, MoTa: req.body.MoTa })
         let updateLichTrinh = convertObj(req.body)
@@ -130,9 +136,42 @@ class homeControllers {
             .then(() => res.redirect('/tours'))
     }
 
+    // [POST] handle add tour
+    handleAddTour(req, res) {
+        // lấy ảnh
+        cloudinary.v2.api.resources({
+            type: 'upload',
+            prefix: `TourDuLich/${req.body.MaTour}` // add your folder   
+        }, function (error, result) {
+            // console.log(result, error)
+            arrImg = result
+        });
+
+        let urlImg = ''
+        if (arrImg["resources"][0]?.["url"])
+            urlImg = new String(arrImg["resources"][0]["url"])
+
+        // console.log(req.body)
+        let { MaTour, TenTour, GiaTour, MaLoaiTour, ThoiGianTour, MoTa, ...lichtrinhs } = req.body
+
+        let insertTour = Tour.collection.insertOne({
+            "MaTour": MaTour,
+            "TenTour": TenTour,
+            "ThoiGianTour": ThoiGianTour,
+            "AnhDaiDien": urlImg.replace('http', 'https'),
+            "MoTa": MoTa,
+            "MaLoaiTour": MaLoaiTour,
+        })
+        let insertLichTrinh = LichTrinh.collection.insertMany(convertDoubleObjForTour(lichtrinhs, MaTour))
+        Promise.all([insertTour, insertLichTrinh]).then(() => {
+            res.redirect('/tours')
+        })
+    }
 }
 
 module.exports = new homeControllers()
+
+// another function to handler
 
 function getLastMaTour(tours) {
 
@@ -174,3 +213,28 @@ function convertDoubleObj(obj) {
     }
     return arr
 }
+
+function convertDoubleObjForTour(obj, MaTour) {
+    let arr = []
+    let i = 0
+    let sum = 0
+    let ngaygio
+    for (const index in obj) {
+        ++sum
+        ++i
+        if (i != 2) {
+            ngaygio = obj[index]
+        }
+        else {
+            arr.push({
+                "MaTour": MaTour,
+                SoThuTuDiaDiem: sum / 2,
+                NgayGio: ngaygio,
+                NoiDung: obj[index],
+            })
+            i = 0
+        }
+    }
+    return arr
+}
+
