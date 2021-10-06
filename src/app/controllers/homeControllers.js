@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
-const LichTrinh = require('../models/LichTrinh')
-const Tour = require('../models/Tour')
-const LoaiTour = require('../models/LoaiTour')
 const cloudinary = require('cloudinary');
+const LichTrinh = require('../models/LichTrinh')
+const DoanDuLich = require('../models/DoanDuLich')
+const KhachHang = require('../models/KhachHang')
+const Tour = require('../models/Tour')
+const NhanVien = require('../models/NhanVien')
+const NhanVienTour = require('../models/NhanVienTour')
+const LoaiTour = require('../models/LoaiTour')
 let arrImg
 
 cloudinary.config({
@@ -35,16 +39,31 @@ class homeControllers {
             }))
     }
     showStaffs(req, res) {
-        LichTrinh.find({}).lean()
-            .then(lichtrinh => res.render('staffs', {
-                img: arrImg["resources"],
-                lichtrinh: lichtrinh,
-            }))
-
-        // res.send(arrImg)
+        let findNhanVien = NhanVien.find({}).lean()
+        let findNhanVienTour = NhanVienTour.find({}).lean()
+        Promise.all([findNhanVien,findNhanVienTour])
+            .then( values =>{
+                let [nhanviens, nhanvientours] = values
+                res.json({
+                    nhanviens,
+                    nhanvientours
+                })
+            })
     }
     showCustomers(req, res) {
-        res.render('customers')
+        let findDoanDuLich = DoanDuLich.find({}).lean()
+        let findKhachHang = KhachHang.find().lean()
+        Promise.all([findDoanDuLich, findKhachHang])
+            .then(values => {
+                let [doandulichs, khachhangs] = values
+                Promise.all([convertListOfNumberMemberEachDoanDuLich(doandulichs)])
+                    .then( listDoanDuLichAndMembers =>{
+                        res.render('customers',{
+                            "doandulichs" :listDoanDuLichAndMembers[0],
+                            khachhangs
+                        })
+                    })
+            })
     }
     showDetailTour(req, res) {
         let MaTour = req.params.MaTour
@@ -58,12 +77,12 @@ class homeControllers {
         });
         let tour = Tour.find({ "MaTour": MaTour }).lean()
         let lichtrinhs = LichTrinh.find({ "MaTour": MaTour }).lean()
-         
+
         Promise.all([tour, lichtrinhs, getImgFromCloud])
             .then(values => {
                 let [detailTour, detailLichTrinh, ...p] = values
                 console.log(detailTour, detailLichTrinh)
-                res.render('tours/detailtour',{
+                res.render('tours/detailtour', {
                     detailTour,
                     detailLichTrinh,
                     img: arrImg["resources"],
@@ -172,7 +191,20 @@ class homeControllers {
 module.exports = new homeControllers()
 
 // another function to handler
-
+async function convertListOfNumberMemberEachDoanDuLich(doandulichs) {
+    let arr = []
+    for (const element of doandulichs) {
+        await KhachHang.count({ "MaDoan": element.MaDoan })
+            .then((number) => {
+                arr.push({
+                    ...element,
+                    SoLuongThanhVien: number,
+                })
+            })
+    }
+    console.log(arr)
+    return arr
+}
 function getLastMaTour(tours) {
 
     let maxNumberMaTour = parseInt(tours[tours.length - 1].MaTour.split('MT')[1]) + 1

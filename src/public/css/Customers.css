@@ -1,0 +1,35 @@
+.icon-extend-option{
+    color: rgb(176, 192, 192);
+    text-align: center;
+    width: 20px;
+    height: 20px;
+}
+.icon-extend-option:hover{
+}
+.container-icon-extend-option:hover{
+    background-color: rgba(170, 185, 185, 0.4);
+    cursor: pointer;
+}
+
+.container-icon-extend-option{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    position: relative;
+}
+.menu-icon-extend-option{
+    background-color: rgb(221, 221, 221);
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    right: 40px;
+    display: none;
+}
+.item-option-icon-extend-option{
+    margin: 0;
+    padding: 5px;
+}
+.item-option-icon-extend-option:hover{
+    background-color: rgb(151, 151, 151);
+}

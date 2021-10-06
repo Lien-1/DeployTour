@@ -1,18 +1,95 @@
-
-<div>
-    <div class="grid-page-right">
-        <div class="div-grid-page-right active">
-            <p class="title-grid-page-right">Total Customers</p>
+<link rel="stylesheet" href="/css/Customers.css">
+<div style="margin: 20px;">
+    <div>
+        <div>
+            <span>Thông tin các đoàn du lịch </span>
+            <select name="" id="information-doandulich">
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="finished">Finished</option>
+            </select>
+            <button>Thêm 1 đoàn mới</button>
         </div>
-        <div class="div-grid-page-right">
-            <p class="title-grid-page-right">Add New Customer</p>
+        {{!-- table đoàn du lịch --}}
+        <div>
+            <table>
+                <tr>
+                    <th>Mã Tour</th>
+                    <th>Mã Đoàn</th>
+                    <th>Tên đoàn du lịch</th>
+                    <th>Ngày khởi hành</th>
+                    <th>Thành viên</th>
+                    <th>Tổng tiền</th>
+                    <th></th>
+                </tr>
+                {{#each doandulichs}}
+                <tr class="row-doandulich">
+                    <td hidden class="row-check-finish-doandulich">{{this.CheckFinish}}</td>
+                    <td>{{this.MaTour}}</td>
+                    <td>{{this.MaDoan}}</td>
+                    <td>{{this.TenDoan}}</td>
+                    <td>{{this.NgayKhoiHanh}}</td>
+                    <td>{{this.SoLuongThanhVien}}</td>
+                    <td>{{this.ChiPhi}}</td>
+                    <td>
+                        <div class="container-icon-extend-option">
+                            <div class="icon-extend-option">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                        </div>
+                        <div class="menu-icon-extend-option">
+                            <p class="item-option-icon-extend-option">Sửa</p>
+                            <p class="item-option-icon-extend-option"> Xóa</p>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
         </div>
-    </div>
-    <div class="content-left-grid-page-right">
-        <p>total customers</p>
-    </div>
-    <div class="content-right-grid-page-right">
-        <p>add new customer</p>
+        <div>
+            <p>Thông tin các khách hàng trong đoàn</p>
+            <select name="" id="information-khachhang">
+                <option value="All">All</option>
+                {{#each khachhangs}}
+                <option value="{{this.MaDoan}}">{{this.MaDoan}}</option>
+                {{/each}}
+            </select>
+        </div>
+        {{!-- table khách du lịch --}}
+        <div>
+            <table>
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <th>Họ tên </th>
+                    <th>CMND</th>
+                    <th>Giới tính</th>
+                    <th>Số điện thoại</th>
+                    <th>Mã đoàn</th>
+                    <th></th>
+                </tr>
+                {{#each khachhangs}}
+                <tr class="row-khachhang">
+                    <td>{{this.MaKhachHang}}</td>
+                    <td>{{this.HoTen}}</td>
+                    <td>{{this.CMND}}</td>
+                    <td>{{this.GioiTinh}}</td>
+                    <td>{{this.SDT}}</td>
+                    <td>{{this.MaDoan}}</td>
+                    <td>
+                        <div class="container-icon-extend-option">
+                            <div class="icon-extend-option">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                        </div>
+                        <div class="menu-icon-extend-option">
+                            <p class="item-option-icon-extend-option">Sửa</p>
+                            <p class="item-option-icon-extend-option"> Xóa</p>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
     </div>
 </div>
 {{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}

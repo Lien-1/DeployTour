@@ -23,6 +23,7 @@
     <div>
         <table>
             <tr>
+                <th>#</th>
                 <th>Mã Tour</th>
                 <th>Tên Tour</th>
                 <th>Thời gian Tour</th>
@@ -31,6 +32,7 @@
             </tr>
             {{#each tableTours}}
             <tr>
+                <td>{{sumIndex @index 1}}</td>
                 <td>{{this.MaTour}}</td>
                 <td>{{this.TenTour}}</td>
                 <td>{{this.ThoiGianTour}}</td>
