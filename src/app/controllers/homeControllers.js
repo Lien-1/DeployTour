@@ -9,6 +9,9 @@ const NhanVienTour = require('../models/NhanVienTour')
 const LoaiTour = require('../models/LoaiTour')
 let arrImg
 
+// import ApexCharts from 'apexcharts'
+// const ApexCharts = require('apexcharts')
+
 cloudinary.config({
     cloud_name: "di2u0wa8l", // add your cloud_name
     api_key: "489298223688526", // add your api_key
@@ -41,8 +44,8 @@ class homeControllers {
     showStaffs(req, res) {
         let findNhanVien = NhanVien.find({}).lean()
         let findNhanVienTour = NhanVienTour.find({}).lean()
-        Promise.all([findNhanVien,findNhanVienTour])
-            .then( values =>{
+        Promise.all([findNhanVien, findNhanVienTour])
+            .then(values => {
                 let [nhanviens, nhanvientours] = values
                 res.json({
                     nhanviens,
@@ -57,9 +60,9 @@ class homeControllers {
             .then(values => {
                 let [doandulichs, khachhangs] = values
                 Promise.all([convertListOfNumberMemberEachDoanDuLich(doandulichs)])
-                    .then( listDoanDuLichAndMembers =>{
-                        res.render('customers',{
-                            "doandulichs" :listDoanDuLichAndMembers[0],
+                    .then(listDoanDuLichAndMembers => {
+                        res.render('customers', {
+                            "doandulichs": listDoanDuLichAndMembers[0],
                             khachhangs
                         })
                     })
@@ -143,7 +146,40 @@ class homeControllers {
     }
 
     showStatistics(req, res) {
-        res.render('statistics')
+        let listMaTours = []
+        let tours = Tour.find().lean()
+            .then(tours => {
+                for (let element of tours) {
+                    listMaTours.push({
+                        MaTour: element.MaTour,
+                        ChiPhi: 0,
+                        Count: 0
+                    })
+                }
+                return tableStatisticsTours(listMaTours)
+
+            })
+        let listNhanViens = []
+        let nhanviens = NhanVien.find().lean()
+            .then(nhanviens => {
+                for (let element of nhanviens) {
+                    listNhanViens.push({
+                        MaNhanVien: element.MaNhanVien,
+                        TenNhanVien: element.TenNhanVien,
+                        ChucVu: element.ChucVu,
+                        CountMaDoan: 0,
+                    })
+                }
+                return tableStatisticsNhanVien(listNhanViens)
+            })
+        Promise.all([tours, nhanviens])
+            .then(values => {
+                let [tableTours, tableNhanViens] = values
+                res.render('statistics', {
+                    tableTours,
+                    tableNhanViens
+                })
+            })
     }
 
     // [POST] handle edit tour
@@ -186,11 +222,71 @@ class homeControllers {
             res.redirect('/tours')
         })
     }
+
+    // get form add doan du lich
+    addDoanDuLich(req, res) {
+        Tour.find().lean()
+            .then(tours => {
+                res.render('customers/addDoanDuLich', {
+                    tours,
+                })
+            })
+    }
 }
 
 module.exports = new homeControllers()
 
 // another function to handler
+async function tableStatisticsNhanVien(listNhanViens) {
+    // console.log(listNhanViens)
+    let tableNhanVien = []
+    await NhanVienTour.find().lean()
+        .then(nhanvientours => {
+            for (let element1 of nhanvientours) {
+                for (let element2 of listNhanViens) {
+                    if (element2.MaNhanVien == element1.MaNhanVien) {
+                        element2.CountMaDoan = parseInt(element2.CountMaDoan) + 1
+                    }
+                }
+            }
+            // console.log(listNhanViens)
+        })
+    return listNhanViens
+}
+function tableStatisticsTours(listMaTours) {
+    // let table = []
+    // await DoanDuLich.find().lean()
+    //     .then(doandulichs => {
+    //         for (let element of doandulichs) {
+    //             table.push({
+    //                 MaTour: element.MaTour,
+    //                 ChiPhi: element.ChiPhi
+    //             })
+    //         }
+    //     })
+    // console.log(table)
+    let demoData = [
+        { MaTour: 'MT1', ChiPhi: '13000000' },
+        { MaTour: 'MT1', ChiPhi: '12300' },
+        { MaTour: 'MT1', ChiPhi: '1356500' },
+        { MaTour: 'MT2', ChiPhi: '10000000' },
+        { MaTour: 'MT3', ChiPhi: '100000' },
+        { MaTour: 'MT4', ChiPhi: '19999' },
+        { MaTour: 'MT4', ChiPhi: '1999900' },
+        { MaTour: 'MT4', ChiPhi: '12345' },
+    ]
+    for (let element1 of demoData) {
+        for (let element2 of listMaTours) {
+            if (element1.MaTour == element2.MaTour) {
+                element2.ChiPhi = parseInt(element2.ChiPhi) + parseInt(element1.ChiPhi)
+                element2.Count = parseInt(element2.Count) + 1
+                continue
+            }
+        }
+    }
+    console.log(listMaTours)
+    return listMaTours
+}
 async function convertListOfNumberMemberEachDoanDuLich(doandulichs) {
     let arr = []
     for (const element of doandulichs) {

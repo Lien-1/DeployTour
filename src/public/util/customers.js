@@ -1,3 +1,9 @@
+$('#button-add-new-doandulich').on('click',function(e){
+    window.location.href = `/add/doandulich`
+    return false
+})
+
+// css cái dấu 3 chấm nằm dọc phía cuói mỗi table, mà chả hiểu nó cần k :((
 $('.container-icon-extend-option').on('click', function (e) {
     let index = $('.container-icon-extend-option').index(this)
     console.log(index)
@@ -6,7 +12,6 @@ $('.container-icon-extend-option').on('click', function (e) {
     else {
         $('.menu-icon-extend-option').eq(index).css('display', 'block')
     }
-
 })
 
 //click select option khach hang

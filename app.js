@@ -6,7 +6,6 @@ const route = require('./src/routes')
 const app = express()
 const port = process.env.PORT || 3004
 const db = require('./src/config/db')
-
 db.connect()
 
 app.use(express.static(path.join(__dirname, 'src', 'public')))

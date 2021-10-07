@@ -1,10 +1,50 @@
-<p>statistics</p>
-
+<div>
+    <p>Thống kê tour</p>
+    <div id="chart-tour"></div>
+    <div style="margin: 10px 150px 10px 150px;">
+        <table>
+            <tr>
+                <th>MaTour</th>
+                <th>ChiPhi</th>
+                <th>Số đoàn đã đi</th>
+            </tr>
+            {{#each tableTours}}
+            <tr>
+                <td class="statistic-tableTours-MaTour">{{this.MaTour}}</td>
+                <td class="statistic-tableTours-ChiPhi">{{this.ChiPhi}}</td>
+                <td class="statistic-tableTours-Count">{{this.Count}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
+<div>
+    <p>Thống kê nhân viên</p>
+    <div id="chart-nhanvien"></div>
+    <div style="margin: 20px ">
+        <table>
+            <tr>
+                <th>MaNhanVien</th>
+                <th>TenNhanVien</th>
+                <th>ChucVu</th>
+                <th>Những tour đã đi</th>
+            </tr>
+            {{#each tableNhanViens}}
+            <tr>
+                <td class="statistic-tableNhanViens-MaNhanVien">{{this.MaNhanVien}}</td>
+                <td class="statistic-tableNhanViens-TenNhanVien">{{this.TenNhanVien}}</td>
+                <td class="statistic-tableNhanViens-ChucVu">{{this.ChucVu}}</td>
+                <td class="statistic-tableNhanViens-CountMaDoan">{{this.CountMaDoan}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
 {{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}
 <script src="util/statistics.js"></script>
 
 <script>
     $('.container-item-tag').removeClass('active')
     $('.container-item-tag').eq(4).addClass('active')
-    
+
 </script>

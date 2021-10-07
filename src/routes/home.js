@@ -21,4 +21,6 @@ router.get('/', homeControllers.showDashboard)
 router.post('/handle/editTour', homeControllers.handleEditTour)
 router.post('/handle/addTour', homeControllers.handleAddTour)
 
+// add
+router.get('/add/doandulich', homeControllers.addDoanDuLich)
 module.exports = router
