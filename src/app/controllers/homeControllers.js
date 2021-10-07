@@ -47,10 +47,11 @@ class homeControllers {
         Promise.all([findNhanVien, findNhanVienTour])
             .then(values => {
                 let [nhanviens, nhanvientours] = values
-                res.json({
-                    nhanviens,
-                    nhanvientours
-                })
+                // res.json({
+                //     nhanviens,
+                //     nhanvientours
+                // })
+                res.render('staffs')
             })
     }
     showCustomers(req, res) {
