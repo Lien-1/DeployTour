@@ -1,4 +1,4 @@
-$('#button-add-new-doandulich').on('click',function(e){
+$('#button-add-new-doandulich').on('click', function (e) {
     window.location.href = `/add/doandulich`
     return false
 })
@@ -71,4 +71,33 @@ function showTableDoanDuLichForOption(option) {
             }
         }
     }
+}
+
+// button sửa đoàn du lịch 
+$('.btn-edit-doandulich').on('click', function () {
+    let index = $('.btn-edit-doandulich').index(this)
+    let date = new Date()
+    let currentDay = parseInt(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear()
+    let ngaykhoihanh = $('.row-doandulich td:nth-child(5)').eq(index).html()
+    let MaDoan = $('.row-doandulich td:nth-child(3)').eq(index).html()
+    let TenDoan = $('.row-doandulich td:nth-child(4)').eq(index).html()
+    let jsDateCurrentDay = new Date(currentDay)
+    let jsDateNgayKhoiHanh = new Date(ngaykhoihanh)
+    // chưa khởi hành  thì có thể sửa ngày khởi hành
+    if (jsDateNgayKhoiHanh < jsDateCurrentDay) {
+        let newNgayKhoihanh = prompt(`Nhập ngày khởi hành mới cho: ${TenDoan}\nĐịnh dạng : mm/dd/yyyy\nChúc bạn có một chuyến đi zui ze :)))`)
+        console.log(newNgayKhoihanh)
+        //submit form change NgayKhoiHanh
+        submitFormChangeNgayKhoiHanh(MaDoan,newNgayKhoihanh)
+    } else {
+        alert('Đoàn đã bắt đầu lịch trình, không thể thay đổi.')
+    }
+})
+function submitFormChangeNgayKhoiHanh(MaDoan, ngaykhoihanh){
+    $('#input-form-change-NgayKhoiHanh-MaDoan').attr('value',MaDoan)
+    $('#input-form-change-NgayKhoiHanh-NgayKhoiHanh').attr('value',ngaykhoihanh)
+    $('#form-change-NgayKhoiHanh').attr('method','POST')
+    $('#form-change-NgayKhoiHanh').attr('action','/handle/editNgayKhoiHanh')
+    $('#form-change-NgayKhoiHanh').submit()
+
 }

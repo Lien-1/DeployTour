@@ -1,4 +1,8 @@
 <link rel="stylesheet" href="/css/Customers.css">
+<form id="form-change-NgayKhoiHanh">
+    <input hidden type="text" name="MaDoan" id="input-form-change-NgayKhoiHanh-MaDoan" value="">
+    <input hidden type="text" name="NgayKhoiHanh" id="input-form-change-NgayKhoiHanh-NgayKhoiHanh" value="">
+</form>
 <div style="margin: 20px;">
     <div>
         <div>
@@ -17,7 +21,7 @@
                     <th>Mã Tour</th>
                     <th>Mã Đoàn</th>
                     <th>Tên đoàn du lịch</th>
-                    <th>Ngày khởi hành</th>
+                    <th>Ngày khởi hành(mm/dd/yyyy)</th>
                     <th>Thành viên</th>
                     <th>Tổng tiền</th>
                     <th></th>
@@ -38,8 +42,26 @@
                             </div>
                         </div>
                         <div class="menu-icon-extend-option">
-                            <p class="item-option-icon-extend-option">Sửa</p>
-                            <p class="item-option-icon-extend-option"> Xóa</p>
+                            <div class="item-option-icon-extend-option">
+                                <table style="margin: 0;">
+                                    <tr style="background-color: transparent;">
+                                        <td>
+                                            <i class="fas fa-edit"></i>
+                                        </td>
+                                        <td class="btn-edit-doandulich">Sửa</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="item-option-icon-extend-option">
+                                <table style="margin: 0;">
+                                    <tr style="background-color: transparent;">
+                                        <td>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </td>
+                                        <td>Xóa</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -81,10 +103,10 @@
                                 <i class="fas fa-ellipsis-v"></i>
                             </div>
                         </div>
-                        <div class="menu-icon-extend-option">
+                        {{!-- <div class="menu-icon-extend-option">
                             <p class="item-option-icon-extend-option">Sửa</p>
                             <p class="item-option-icon-extend-option"> Xóa</p>
-                        </div>
+                        </div> --}}
                     </td>
                 </tr>
                 {{/each}}

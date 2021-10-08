@@ -10,7 +10,7 @@ const DoanDuLich = new Schema({
   MaDoan: { type: String, maxLength: 100 },
   TenDoan: { type: String },
   MaCTDoan: { type: String },
-  NgayKhoiHanh: { type: Date},
+  NgayKhoiHanh: { type: String},
   MaTour: { type: String},
   CheckFinish: { type: String},
   SoThuTuDiaDiem: { type: String},

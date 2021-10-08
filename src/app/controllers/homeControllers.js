@@ -223,6 +223,11 @@ class homeControllers {
             res.redirect('/tours')
         })
     }
+    handleEditNgayKhoiHanh(req, res){
+        // res.json(req.body)
+        DoanDuLich.updateOne({MaDoan: req.body.MaDoan},{NgayKhoiHanh : req.body.NgayKhoiHanh})
+            .then(()=> res.redirect('back'))
+    }
 
     // get form add doan du lich
     addDoanDuLich(req, res) {

@@ -20,6 +20,7 @@ router.get('/', homeControllers.showDashboard)
 //handle 
 router.post('/handle/editTour', homeControllers.handleEditTour)
 router.post('/handle/addTour', homeControllers.handleAddTour)
+router.post('/handle/editNgayKhoiHanh', homeControllers.handleEditNgayKhoiHanh)
 
 // add
 router.get('/add/doandulich', homeControllers.addDoanDuLich)
