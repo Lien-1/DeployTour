@@ -82,6 +82,7 @@
             <table>
                 <tr>
                     <th>Họ tên </th>
+                    <th hidden>Mã khách hàng</th>
                     <th>CMND</th>
                     <th>Giới tính</th>
                     <th>Số điện thoại</th>
@@ -91,6 +92,7 @@
                 {{#each khachhangs}}
                 <tr class="row-khachhang">
                     <td>{{this.HoTen}}</td>
+                    <td hidden>{{this.MaKhachHang}}</td>
                     <td>{{this.CMND}}</td>
                     <td>{{this.GioiTinh}}</td>
                     <td>{{this.SDT}}</td>
