@@ -1,24 +1,64 @@
-<script>
-    import ApexCharts from 'apexcharts'
-    var options = {
-        chart: {
-            type: 'line'
-        },
-        series: [{
-            name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
-        }],
-        xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-        }
-    }
-
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-    chart.render();
-</script>
-
-<div id="chart">
+<div style="margin: 10px;padding:10px">
+    <a href="/customers">Back(nhấn vào để lui lại)</a>
+    <form action="/handle/addDoanDuLich" method="POST">
+        <input type="text" name="CheckFinish" id="" value="false" hidden>
+        <input type="text" name="SoThuTuDiaDiem" id="" value="0" hidden>
+        <input type="text" value="1240000" name="ChiPhi" id="input-ChiPhi-real" hidden>
+        <div>
+            <label for="">MaDoan</label>
+            <input type="text" name="MaDoan" id="" value="{{MaDoan}}" readonly>
+        </div>
+        <p>Nhập thông tin đoàn du lịch</p>
+        <div>
+            <div>
+                <label for="">TenDoan</label>
+                <input type="text" name="TenDoan" id="">
+                <label for="">NgayKhoiHanh</label>
+                <input type="date"id="input-date-NgayKhoiHanh">
+                <input type="text" name="NgayKhoiHanh"  id="input-real-date-NgayKhoiHanh" hidden>
+            </div>
+            <div>
+                <label for="">Chọn tour muốn đi</label>
+                <select name="MaTour" id="">
+                    {{#each tours}}
+                    <option value="{{this.MaTour}}">{{this.TenTour}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        {{!-- Nhập thông tin hành khách trong đoàn --}}
+        <div id="container-add-new-khachhang">
+            <span>Nhập thông tin hành khách trong đoàn</span>
+            <button class="button-add-new-khachhang">Thêm khách hàng</button>
+            <div class="item-add-new-khachhang">
+                <div>
+                    <span>Khách hàng 1</span>
+                    {{!-- <div class="delete-new-khachhang" style="cursor: pointer;">
+                        <i class="fas fa-trash-alt"></i>
+                    </div> --}}
+                </div>
+                <div>
+                    <label for="">Tên khách hàng:</label>
+                    <input type="text" name="1-HoTen" id="">
+                    <label for="">CMND:</label>
+                    <input type="text" name="1-CMND" id="">
+                    <label for="">GioiTinh:</label>
+                    <select name="1-GioiTinh" id="">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                    <label for="">SDT</label>
+                    <input type="text" name="1-SDT" id="">
+                </div>
+            </div>
+        </div>
+        <div>
+            <span>Tổng Chi phí :</span>
+            <input type="text"  value="1240000" readonly id="input-ChiPhi"
+                style="border: transparent;outline:none;cursor:pointer">
+            <button>Lưu thông tin</button>
+        </div>
+    </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="/util/addDoanDuLich.js"></script>

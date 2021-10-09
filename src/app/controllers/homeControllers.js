@@ -223,20 +223,33 @@ class homeControllers {
             res.redirect('/tours')
         })
     }
-    handleEditNgayKhoiHanh(req, res){
+    handleEditNgayKhoiHanh(req, res) {
         // res.json(req.body)
-        DoanDuLich.updateOne({MaDoan: req.body.MaDoan},{NgayKhoiHanh : req.body.NgayKhoiHanh})
-            .then(()=> res.redirect('back'))
+        DoanDuLich.updateOne({ MaDoan: req.body.MaDoan }, { NgayKhoiHanh: req.body.NgayKhoiHanh })
+            .then(() => res.redirect('back'))
     }
-
-    // get form add doan du lich
-    addDoanDuLich(req, res) {
-        Tour.find().lean()
-            .then(tours => {
-                res.render('customers/addDoanDuLich', {
-                    tours,
-                })
+    // [POST] /handle/addDoanDuLich
+    handleAddDoanDuLich(req, res) {
+        let{doandulichs, khachhangs} = convertObjDoanDuLichAndKhachHang(req.body)
+        let insertDoanDuLich = DoanDuLich.collection.insertOne(doandulichs)
+        let insertKhachHang = KhachHang.collection.insertMany(khachhangs)
+        Promise.all([insertDoanDuLich,insertKhachHang])
+            .then(()=>{
+                res.redirect('/customers')
             })
+    }
+    // render form add doan du lich
+    addDoanDuLich(req, res) {
+        getLastMaDoan(function (MaDoan) {
+            console.log(MaDoan)
+            Tour.find().lean()
+                .then(tours => {
+                    res.render('customers/addDoanDuLich', {
+                        "MaDoan": MaDoan,
+                        tours,
+                    })
+                })
+        })
     }
 }
 
@@ -371,4 +384,48 @@ function convertDoubleObjForTour(obj, MaTour) {
     }
     return arr
 }
+// tìm MaDoan mới
+async function getLastMaDoan(callback) {
+    let lastMaDoan
+    await DoanDuLich.find().lean()
+        .then(doandulichs => {
+            let index = doandulichs.length - 1
+            let lastIndexMaDoan = parseInt(doandulichs[index].MaDoan.split('MD')[1]) + 1
+            lastMaDoan = "MD" + lastIndexMaDoan
+            return lastMaDoan
+        })
+        .then(callback)
+}
 
+// handle add khachhang
+function convertObjDoanDuLichAndKhachHang(data) {
+    let { CheckFinish, SoThuTuDiaDiem, ChiPhi, MaDoan, TenDoan, NgayKhoiHanh, MaTour, ...dataKhachHang } = data
+    let doandulichs = {
+        MaDoan,
+        TenDoan,
+        NgayKhoiHanh,
+        MaTour,
+        CheckFinish,
+        SoThuTuDiaDiem,
+        ChiPhi,
+    }
+    return {
+        doandulichs,
+        khachhangs:formatDataKhachHang(MaDoan, dataKhachHang)
+    }
+}
+
+//format from 1-Hoten:... --> HoTen : ...
+function formatDataKhachHang(MaDoan, dataKhachHang) {
+    return Object.keys(dataKhachHang).reduce((acc,currentKey)=>{
+        const split = currentKey.split('-')
+        const index = Number(split[0])
+        const key = split[1]
+        acc[index-1] ={
+            ...(acc[index-1] || {}),
+            [key]:dataKhachHang[currentKey],
+            MaDoan
+        }
+        return acc
+    },[])
+}
