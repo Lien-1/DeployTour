@@ -1,6 +1,7 @@
 <div style="margin: 10px;padding:10px">
     <a href="/customers">Back(nhấn vào để lui lại)</a>
     <form action="/handle/addDoanDuLich" method="POST">
+        <input type="text" name="totalNhanViens[]" id="input-list-nhanvientour" hidden>
         <input type="text" name="CheckFinish" id="" value="false" hidden>
         <input type="text" name="SoThuTuDiaDiem" id="" value="0" hidden>
         <input type="text" value="1240000" name="ChiPhi" id="input-ChiPhi-real" hidden>
@@ -14,8 +15,8 @@
                 <label for="">TenDoan</label>
                 <input type="text" name="TenDoan" id="">
                 <label for="">NgayKhoiHanh</label>
-                <input type="date"id="input-date-NgayKhoiHanh">
-                <input type="text" name="NgayKhoiHanh"  id="input-real-date-NgayKhoiHanh" hidden>
+                <input type="date" id="input-date-NgayKhoiHanh">
+                <input type="text" name="NgayKhoiHanh" id="input-real-date-NgayKhoiHanh" hidden>
             </div>
             <div>
                 <label for="">Chọn tour muốn đi</label>
@@ -54,11 +55,39 @@
         </div>
         <div>
             <span>Tổng Chi phí :</span>
-            <input type="text"  value="1240000" readonly id="input-ChiPhi"
+            <input type="text" value="1240000" readonly id="input-ChiPhi"
                 style="border: transparent;outline:none;cursor:pointer">
             <button>Lưu thông tin</button>
         </div>
     </form>
+    <div>
+        <p>Danh sách các nhân viên hỗ trợ tour du lịch của bạn :</p>
+        <div>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Mã nhân viên</th>
+                    <th>Tên nhân viên</th>
+                    <th>Chức vụ</th>
+                    <th>Số điện thoại</th>
+                </tr>
+                {{#each nhanviens}}
+                <tr class="tr-nhanvientour">
+                    <td>
+                        <input type="checkbox" name="" id="" class="input-checkbox-nhanviens" >
+                    </td>
+                    <td>{{this.MaNhanVien}}</td>
+                    <td>{{this.TenNhanVien}}</td>
+                    <td>{{this.ChucVu}}</td>
+                    <td>{{this.SDTNhanVien}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div>
+            <button id="button-cofirm-addNhanVienTours">Xác nhận</button>
+        </div>
+    </div>
 </div>
 
 <script src="/util/addDoanDuLich.js"></script>

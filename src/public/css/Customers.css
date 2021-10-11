@@ -42,3 +42,17 @@
     color: #637381;
 
 }
+.span-checkfinish-doandulich{
+    color: white;
+    border-radius: 800px;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    padding: 3.78px 7.02px;
+}
+.span-checkfinish-doandulich.finished{
+    background-color: #dc3545;
+}
+.span-checkfinish-doandulich.active{
+    background-color:#198754 ;
+}

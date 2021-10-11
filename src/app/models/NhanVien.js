@@ -10,7 +10,7 @@ const NhanVien = new Schema({
   MaNhanVien: { type: String, maxLength: 100 },
   TenNhanVien: { type: String },
   SDTNhanVien: { type: String },
-  ActiveTour: { type: Date},
+  ActiveTour: { type: String},
   ChucVu: { type: String},
 },{
   timestamps: true

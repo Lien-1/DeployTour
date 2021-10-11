@@ -3,6 +3,9 @@
     <input hidden type="text" name="MaDoan" id="input-form-change-NgayKhoiHanh-MaDoan" value="">
     <input hidden type="text" name="NgayKhoiHanh" id="input-form-change-NgayKhoiHanh-NgayKhoiHanh" value="">
 </form>
+<form action="/handle/finishDoanDuLich" method="POST" id="form-finish-doandulich">
+    <input hidden type="text" name="MaDoan" id="input-form-finishDoanDuLich-MaDoan">
+</form>
 <div style="margin: 20px;">
     <div>
         <div>
@@ -25,6 +28,7 @@
                     <th>Thành viên</th>
                     <th>Tổng tiền</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 {{#each doandulichs}}
                 <tr class="row-doandulich">
@@ -35,11 +39,14 @@
                     <td>{{this.NgayKhoiHanh}}</td>
                     <td>{{this.SoLuongThanhVien}}</td>
                     <td>{{this.ChiPhi}}</td>
+                    <td class="td-checkfinish-doandulich">
+                        <span class="span-checkfinish-doandulich "></span>
+                    </td>
                     <td>
                         <div class="container-icon-extend-option">
                             <div class="icon-extend-option">
                                 <i class="fas fa-ellipsis-v"></i>
-                            </div>
+                            </div>  
                         </div>
                         <div class="menu-icon-extend-option">
                             <div class="item-option-icon-extend-option">
@@ -56,9 +63,9 @@
                                 <table style="margin: 0;">
                                     <tr style="background-color: transparent;">
                                         <td>
-                                            <i class="fas fa-trash-alt"></i>
+                                            <i class="fas fa-flag-checkered"></i>
                                         </td>
-                                        <td>Xóa</td>
+                                        <td class="btn-finish-doandulich">Hoàn thành</td>
                                     </tr>
                                 </table>
                             </div>

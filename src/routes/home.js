@@ -22,6 +22,7 @@ router.post('/handle/editTour', homeControllers.handleEditTour)
 router.post('/handle/addTour', homeControllers.handleAddTour)
 router.post('/handle/addDoanDuLich', homeControllers.handleAddDoanDuLich)
 router.post('/handle/editNgayKhoiHanh', homeControllers.handleEditNgayKhoiHanh)
+router.post('/handle/finishDoanDuLich', homeControllers.handleFinishDoanDuLich)
 
 // add
 router.get('/add/doandulich', homeControllers.addDoanDuLich)

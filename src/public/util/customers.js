@@ -2,7 +2,9 @@ $('#button-add-new-doandulich').on('click', function (e) {
     window.location.href = `/add/doandulich`
     return false
 })
-
+$( document ).ready(function() {
+    setColorAndValForCheckFinished()
+});
 // css cái dấu 3 chấm nằm dọc phía cuói mỗi table, mà chả hiểu nó cần k :((
 $('.container-icon-extend-option').on('click', function (e) {
     let index = $('.container-icon-extend-option').index(this)
@@ -52,19 +54,20 @@ function showTableKhachHangForOption(MaDoan) {
 function showTableDoanDuLichForOption(option) {
     let totalRow = $('.row-doandulich').length
     for (let i = 0; i < totalRow; ++i) {
-        let CheckFinishedOfRow = $('.row-doandulich td:nth-child(1)').eq(i).html()
+        let CheckFinishedOfRow = $('.row-check-finish-doandulich').eq(i).html()
+        // console.log(CheckFinishedOfRow)
         if (option == 'all') {
             $(`.row-doandulich`).eq(i).show()
         }
         else if (option == 'active') {
-            if (CheckFinishedOfRow)
+            if (CheckFinishedOfRow == 'false')
                 $(`.row-doandulich`).eq(i).show()
             else {
                 $(`.row-doandulich`).eq(i).hide()
             }
         }
         else {
-            if (CheckFinishedOfRow)
+            if (CheckFinishedOfRow == 'false')
                 $(`.row-doandulich`).eq(i).hide()
             else {
                 $(`.row-doandulich`).eq(i).show()
@@ -88,16 +91,41 @@ $('.btn-edit-doandulich').on('click', function () {
         let newNgayKhoihanh = prompt(`Nhập ngày khởi hành mới cho: ${TenDoan}\nĐịnh dạng : mm/dd/yyyy\nChúc bạn có một chuyến đi zui ze :)))`)
         console.log(newNgayKhoihanh)
         //submit form change NgayKhoiHanh
-        submitFormChangeNgayKhoiHanh(MaDoan,newNgayKhoihanh)
+        submitFormChangeNgayKhoiHanh(MaDoan, newNgayKhoihanh)
     } else {
         alert('Đoàn đã bắt đầu lịch trình, không thể thay đổi.')
     }
 })
-function submitFormChangeNgayKhoiHanh(MaDoan, ngaykhoihanh){
-    $('#input-form-change-NgayKhoiHanh-MaDoan').attr('value',MaDoan)
-    $('#input-form-change-NgayKhoiHanh-NgayKhoiHanh').attr('value',ngaykhoihanh)
-    $('#form-change-NgayKhoiHanh').attr('method','POST')
-    $('#form-change-NgayKhoiHanh').attr('action','/handle/editNgayKhoiHanh')
+
+// button finish đoàn du lịch : check đoàn du lịch đã hoàn thành chuyến đi 
+$('.btn-finish-doandulich').on('click', function () {
+    let index = $('.btn-finish-doandulich').index(this)
+    let MaDoan = $('.row-doandulich td:nth-child(3)').eq(index).html()
+    $('#input-form-finishDoanDuLich-MaDoan').attr('value', MaDoan)
+    $('#form-finish-doandulich').submit()
+})
+
+function submitFormChangeNgayKhoiHanh(MaDoan, ngaykhoihanh) {
+    $('#input-form-change-NgayKhoiHanh-MaDoan').attr('value', MaDoan)
+    $('#input-form-change-NgayKhoiHanh-NgayKhoiHanh').attr('value', ngaykhoihanh)
+    $('#form-change-NgayKhoiHanh').attr('method', 'POST')
+    $('#form-change-NgayKhoiHanh').attr('action', '/handle/editNgayKhoiHanh')
     $('#form-change-NgayKhoiHanh').submit()
 
+}
+
+function setColorAndValForCheckFinished() {
+    let totalRow = $('.row-doandulich').length
+    for (let i = 0; i < totalRow; ++i) {
+        let CheckFinishedOfRow = $('.row-check-finish-doandulich').eq(i).html()
+        // finished -- red
+        if (CheckFinishedOfRow == 'true') {
+            $('.span-checkfinish-doandulich').eq(i).html("Finished") 
+            $('.span-checkfinish-doandulich').eq(i).addClass('finished')
+        }
+        else if (CheckFinishedOfRow == 'false') {
+            $('.span-checkfinish-doandulich').eq(i).html("Active") 
+            $('.span-checkfinish-doandulich').eq(i).addClass('active')
+        }
+    }
 }

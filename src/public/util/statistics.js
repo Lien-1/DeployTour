@@ -21,90 +21,44 @@ for (let i = 0; i < indexStatisticNhanVien; ++i) {
 }
 
 var optionsTour = {
+    series: [{
+        name: 'Số đoàn đã đi',
+        type: 'column',
+        data: inputTableToursCount
+    }, {
+        name: 'Chi phí',
+        type: 'line',
+        data: inputTableToursChiPhi
+    }],
     chart: {
         height: 350,
-        type: "line",
-        stacked: false
+        type: 'line',
     },
-    dataLabels: {
-        enabled: false
-    },
-    colors: ["#FF1654", "#247BA0"],
-    series: [
-        {
-            name: "Tổng chi phí",
-            data: inputTableToursChiPhi
-        },
-        {
-            name: "Số đoàn đã đi",
-            data: inputTableToursCount
-        }
-    ],
     stroke: {
-        width: [4, 4]
+        width: [0, 2]
     },
-    plotOptions: {
-        bar: {
-            columnWidth: "20%"
-        }
+    // title: {
+    //     text: 'Traffic Sources'
+    // },
+    dataLabels: {
+        enabled: true,
+        enabledOnSeries: [1]
     },
-    xaxis: {
-        categories: inputTableToursMaTour
-    },
-    yaxis: [
-        {
-            axisTicks: {
-                show: true
-            },
-            axisBorder: {
-                show: true,
-                color: "#FF1654"
-            },
-            labels: {
-                style: {
-                    colors: "#FF1654"
-                }
-            },
-            title: {
-                text: "Tổng chi phí",
-                style: {
-                    color: "#FF1654"
-                }
-            }
+    labels: inputTableToursMaTour,
+    // xaxis: {
+    //     type: 'datetime'
+    // },
+    yaxis: [{
+        title: {
+            text: 'Số đoàn đã đi',
         },
-        {
-            opposite: true,
-            axisTicks: {
-                show: true
-            },
-            axisBorder: {
-                show: true,
-                color: "#247BA0"
-            },
-            labels: {
-                style: {
-                    colors: "#247BA0"
-                }
-            },
-            title: {
-                text: "Số đoàn đã đi",
-                style: {
-                    color: "#247BA0"
-                }
-            }
+
+    }, {
+        opposite: true,
+        title: {
+            text: 'Chi phí'
         }
-    ],
-    tooltip: {
-        shared: false,
-        intersect: true,
-        x: {
-            show: false
-        }
-    },
-    legend: {
-        horizontalAlign: "left",
-        offsetX: 40
-    }
+    }]
 };
 
 var chartTour = new ApexCharts(document.querySelector("#chart-tour"), optionsTour);

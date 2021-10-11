@@ -230,23 +230,40 @@ class homeControllers {
     }
     // [POST] /handle/addDoanDuLich
     handleAddDoanDuLich(req, res) {
-        let{doandulichs, khachhangs} = convertObjDoanDuLichAndKhachHang(req.body)
+        let { totalNhanViens, MaDoan, doandulichs, khachhangs } = convertObjDoanDuLichAndKhachHang(req.body)
+        handleNhanVienAddDoanDuLich(totalNhanViens, MaDoan)
         let insertDoanDuLich = DoanDuLich.collection.insertOne(doandulichs)
         let insertKhachHang = KhachHang.collection.insertMany(khachhangs)
-        Promise.all([insertDoanDuLich,insertKhachHang])
-            .then(()=>{
+        Promise.all([insertDoanDuLich, insertKhachHang])
+            .then(() => {
                 res.redirect('/customers')
             })
+    }
+    async handleFinishDoanDuLich(req, res) {
+        await NhanVienTour.find({ MaDoan: req.body.MaDoan })
+            .then(nhanviens => {
+                for (const element of nhanviens) {
+                    console.log(element.MaNhanVien)
+                    NhanVien.updateOne({ MaNhanVien: element.MaNhanVien }, { ActiveTour: 'false' })
+                        .then(() => console.log('update success'))
+                }
+            })
+        await DoanDuLich.updateOne({ MaDoan: req.body.MaDoan }, { CheckFinish: 'true' })
+            .then(() => console.log('update checkfinish success'))
+        res.redirect('back')
     }
     // render form add doan du lich
     addDoanDuLich(req, res) {
         getLastMaDoan(function (MaDoan) {
-            console.log(MaDoan)
-            Tour.find().lean()
-                .then(tours => {
+            let findTour = Tour.find().lean()
+            let findNhanVien = NhanVien.find({ ActiveTour: 'false' }).lean()
+            Promise.all([findNhanVien, findTour])
+                .then(values => {
+                    let [nhanviens, tours] = values
                     res.render('customers/addDoanDuLich', {
                         "MaDoan": MaDoan,
                         tours,
+                        nhanviens
                     })
                 })
         })
@@ -399,7 +416,7 @@ async function getLastMaDoan(callback) {
 
 // handle add khachhang
 function convertObjDoanDuLichAndKhachHang(data) {
-    let { CheckFinish, SoThuTuDiaDiem, ChiPhi, MaDoan, TenDoan, NgayKhoiHanh, MaTour, ...dataKhachHang } = data
+    let { totalNhanViens, CheckFinish, SoThuTuDiaDiem, ChiPhi, MaDoan, TenDoan, NgayKhoiHanh, MaTour, ...dataKhachHang } = data
     let doandulichs = {
         MaDoan,
         TenDoan,
@@ -410,22 +427,38 @@ function convertObjDoanDuLichAndKhachHang(data) {
         ChiPhi,
     }
     return {
+        totalNhanViens,
+        MaDoan,
         doandulichs,
-        khachhangs:formatDataKhachHang(MaDoan, dataKhachHang)
+        khachhangs: formatDataKhachHang(MaDoan, dataKhachHang)
     }
 }
 
 //format from 1-Hoten:... --> HoTen : ...
 function formatDataKhachHang(MaDoan, dataKhachHang) {
-    return Object.keys(dataKhachHang).reduce((acc,currentKey)=>{
+    return Object.keys(dataKhachHang).reduce((acc, currentKey) => {
         const split = currentKey.split('-')
         const index = Number(split[0])
         const key = split[1]
-        acc[index-1] ={
-            ...(acc[index-1] || {}),
-            [key]:dataKhachHang[currentKey],
+        acc[index - 1] = {
+            ...(acc[index - 1] || {}),
+            [key]: dataKhachHang[currentKey],
             MaDoan
         }
         return acc
-    },[])
+    }, [])
+}
+
+async function handleNhanVienAddDoanDuLich(arrMaNhanVien, MaDoan) {
+    let arr = arrMaNhanVien[0].split(',')
+    for (let i = 0; i < arr.length; ++i) {
+        let MaNhanVien = arr[i]
+        await NhanVien.updateOne({ MaNhanVien }, { ActiveTour: "true" })
+            .then(() => console.log('success update nhanviens'))
+        await NhanVienTour.collection.insertOne({
+            MaDoan,
+            MaNhanVien
+        })
+            .then(() => console.log('success insert nhanvientours'))
+    }
 }
