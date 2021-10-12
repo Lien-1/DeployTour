@@ -1,8 +1,14 @@
 <script src="https://js.hcaptcha.com/1/api.js?reportapi=https%3A%2F%2Faccounts.hcaptcha.com&custom=False"
     type="text/javascript" async defer></script>
-<div id="hcaptcha-demo" class="h-captcha" data-sitekey="cbca4c28-4b17-455e-9365-d3d68f9f9f07" data-callback="onSuccess"
-    data-expired-callback="onExpire"></div>
-<div class="hcaptcha-success smsg" aria-live="polite"></div>
+<div>
+    <form action="">
+        {{!-- viết code tạo cái khung và mấy cái đăng nhập trong tag form, chỉ thêm k sửa và thay đổi bất kì tên class
+        hay id nào đã có --}}
+        <div id="hcaptcha-demo" class="h-captcha" data-sitekey="cbca4c28-4b17-455e-9365-d3d68f9f9f07"
+            data-callback="onSuccess" data-expired-callback="onExpire"></div>
+        <div class="hcaptcha-success smsg" aria-live="polite"></div>
+    </form>
+</div>
 <script>
     // success callback
     var onSuccess = function (response) {
@@ -25,4 +31,3 @@
     };
 </script>
 
-</div>
