@@ -28,6 +28,9 @@ cloudinary.v2.api.resources({
 });
 
 class homeControllers {
+    signIn(req, res){
+        res.render('signin')
+    }
     //GET /
     showHome(req, res) {
         LichTrinh.find({})

@@ -1,0 +1,28 @@
+<script src="https://js.hcaptcha.com/1/api.js?reportapi=https%3A%2F%2Faccounts.hcaptcha.com&custom=False"
+    type="text/javascript" async defer></script>
+<div id="hcaptcha-demo" class="h-captcha" data-sitekey="cbca4c28-4b17-455e-9365-d3d68f9f9f07" data-callback="onSuccess"
+    data-expired-callback="onExpire"></div>
+<div class="hcaptcha-success smsg" aria-live="polite"></div>
+<script>
+    // success callback
+    var onSuccess = function (response) {
+        var errorDivs = document.getElementsByClassName("hcaptcha-error");
+        if (errorDivs.length) {
+            errorDivs[0].className = "";
+        }
+        var errorMsgs = document.getElementsByClassName("hcaptcha-error-message");
+        if (errorMsgs.length) {
+            errorMsgs[0].parentNode.removeChild(errorMsgs[0]);
+        }
+
+        var logEl = document.querySelector(".hcaptcha-success");
+        logEl.innerHTML = "Challenge Success!"
+    };
+
+    var onExpire = function (response) {
+        var logEl = document.querySelector(".hcaptcha-success");
+        logEl.innerHTML = "Token expired."
+    };
+</script>
+
+</div>
