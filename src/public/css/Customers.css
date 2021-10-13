@@ -1,47 +1,4 @@
-.icon-extend-option {
-    color: rgb(176, 192, 192);
-    text-align: center;
-    width: 20px;
-    height: 20px;
-}
 
-.container-icon-extend-option:hover {
-    background-color: rgba(170, 185, 185, 0.4);
-    cursor: pointer;
-}
-
-.container-icon-extend-option {
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0 10px 0;
-    position: relative;
-}
-
-.menu-icon-extend-option {
-    background-color: white;
-    text-align: center;
-    cursor: pointer;
-    position: absolute;
-    right: 40px;
-    display: none;
-}
-
-.item-option-icon-extend-option {
-    margin: 0;
-    padding: 10px;
-}
-
-.item-option-icon-extend-option:hover {
-    background-color: rgba(0, 0, 0,0.1);
-}
-
-.item-option-icon-extend-option td {
-    width: 20px;
-    font-size: 15px;
-    color: #637381;
-
-}
 .span-checkfinish-doandulich{
     color: white;
     border-radius: 800px;

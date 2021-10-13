@@ -5,6 +5,7 @@ const homeControllers = require('../app/controllers/homeControllers')
 
 
 router.get('/dashboard', homeControllers.showDashboard)
+router.get('/staffs/addNewStaff', homeControllers.addNewStaff)
 router.get('/staffs', homeControllers.showStaffs)
 router.get('/customers', homeControllers.showCustomers)
 

@@ -1,22 +1,8 @@
 <link rel="stylesheet" href="/css/staffs.css">
-{{!-- <div>
-    <div class="grid-page-right">
-        <div class="div-grid-page-right active">
-            <p class="title-grid-page-right">Total Staffs</p>
-        </div>
-        <div class="div-grid-page-right">
-            <p class="title-grid-page-right">Add New Staff</p>
-        </div>
-    </div>
-    <div class="content-left-grid-page-right">
-        <p>total staffs</p>
-    </div>
-    <div class="content-right-grid-page-right">
-        <p>add new staff</p>
-    </div>
-    
-</div> --}}
-
+{{#each nhanviens}}
+<p>{{this.TenNhanVien}}</p>
+{{/each}}
+<a href="/staffs/addNewStaff">add new staffs</a>
 
 
 {{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}

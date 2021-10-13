@@ -50,12 +50,17 @@ class homeControllers {
         Promise.all([findNhanVien, findNhanVienTour])
             .then(values => {
                 let [nhanviens, nhanvientours] = values
-                // res.json({
-                //     nhanviens,
-                //     nhanvientours
-                // })
-                res.render('staffs')
+                res.render('staffs',{
+                    nhanviens,
+                })
+                
             })
+    }
+    // GET add new staff
+    addNewStaff(req, res){
+        res.render('staffs/addNewStaff',{
+            "MaNhanVien":"MNV6",
+        })
     }
     showCustomers(req, res) {
         let findDoanDuLich = DoanDuLich.find({}).lean()
