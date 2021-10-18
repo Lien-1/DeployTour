@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400&display=swap" rel="stylesheet">
 
-    {{!--  apexcharts  --}}
-    <script  src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{!-- apexcharts --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <style>
         * {
@@ -35,7 +35,7 @@
 
 <body>
     <div>
-        <div style="border-right: 1px rgb(235, 234, 234) solid;width: 280px;position: fixed;top: 0;bottom: 0;left: 0;">
+        <div id="layout-left-container">
             <img src="/img/logo.png" alt="" style="width: 80%;height: 120px;margin: 20px;">
             <div class="container-item-tag ">
                 <i class="fas fa-tachometer-alt container-item-tag-icon"></i>
@@ -73,7 +73,7 @@
             {{{body}}}
         </div>
     </div>
-    
+
 </body>
 <script>
     $('.div-grid-page-right').on('click', function (e) {
@@ -88,6 +88,16 @@
             $('.content-left-grid-page-right').css('display', 'block')
         }
     })
+    let pathname = window.location.pathname;
+    console.log(pathname)
+    if (pathname == "/") {
+        $('#layout-left-container').css('display', 'none')
+        $('#divMain').css('padding-left', '0px')
+    }
+    else {
+        $('#layout-left-container').css('display', 'block')
+        $('#divMain').css('padding-left', '280px')
+    }
 </script>
 
 </html>

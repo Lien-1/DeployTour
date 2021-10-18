@@ -7,6 +7,15 @@
     margin-bottom: 30px;
 }
 
+#layout-left-container {
+    border-right: 1px rgb(235, 234, 234) solid;
+    width: 280px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
 button {
     color: white;
     background-color: #00ab55;
@@ -16,7 +25,9 @@ button {
     padding: 5px 10px 5px 10px;
     cursor: pointer;
 }
+
 /* table */
+
 table {
     width: 100%;
     text-align: left;
@@ -39,16 +50,20 @@ th:nth-child(1) {
     border-top-left-radius: 10px;
 }
 
-td{
+td {
     padding: 5px;
 }
-tr{
+
+tr {
     border-bottom: 1px solid rgb(233, 233, 233);
 }
+
 /* tr:nth-child(odd){
     background-color: #a2d8be;
 } */
+
 /*  */
+
 .container-item-tag {
     padding: 15px 10px 15px 20px;
 }
@@ -270,7 +285,9 @@ tr{
 .checkbox-search-content:checked~.search-content {
     transform: translateY(0);
 }
+
 /* css nút ... theo hàng dọc ở mõi table */
+
 .icon-extend-option {
     color: rgb(176, 192, 192);
     text-align: center;
@@ -306,13 +323,13 @@ tr{
 }
 
 .item-option-icon-extend-option:hover {
-    background-color: rgba(0, 0, 0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .item-option-icon-extend-option td {
     width: 20px;
     font-size: 15px;
     color: #637381;
-
 }
+
 /* end css ...  */
