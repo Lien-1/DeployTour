@@ -1,7 +1,9 @@
-<div>
-    <p>Thống kê tour</p>
+<link rel="stylesheet" href="/css/statistics.css">
+<div class="statistics">
+<div class="statistics__container">
+    <h3 class="statistic-heading">Thống kê tour</h3>
     <div id="chart-tour"></div>
-    <div style="margin: 10px 150px 10px 150px;">
+    <div>
         <table>
             <tr>
                 <th>MaTour</th>
@@ -18,8 +20,8 @@
         </table>
     </div>
 </div>
-<div>
-    <p>Thống kê nhân viên</p>
+<div class="statistics__container">
+    <h3 class="statistic-heading">Thống kê nhân viên</h3>
     <div id="chart-nhanvien"></div>
     <div style="margin: 20px ">
         <table>
@@ -39,6 +41,7 @@
             {{/each}}
         </table>
     </div>
+</div>
 </div>
 {{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}
 <script src="util/statistics.js"></script>

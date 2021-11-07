@@ -1,0 +1,48 @@
+.addstaffs{
+    padding: 24px 32px;
+}
+.addstaffs__header{
+    display: flex;
+    align-items: center;
+}
+.addstaffs__header-back{
+    
+}
+.addstaffs__header-back-link{
+    color: #00ab55;
+}
+.addstaffs__heading{
+    margin: 0 16px;
+    font-size: 24px;
+    flex: 1;
+    text-align: center;
+}
+.addstaffs__container{
+    margin-top: 48px;
+}
+.addstaffs__container-info{
+    display: grid;
+    grid-template-columns: 20% 30% 50%;
+    margin-bottom: 16px;
+}
+.addstaffs__container-label{
+    font-size: 16px;
+    margin: auto 0;
+}
+.addstaffs__container-input{
+    padding: 8px 6px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    outline: none;
+}
+.addstaffs__container-select{
+    font-size: 14px;
+    padding: 8px 8px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    outline: none;
+}
+.addstaffs__container-btn{
+    text-align: center;
+    margin-top: 32px;
+}

@@ -1,0 +1,10 @@
+.statistics{
+    padding: 24px 32px;
+}
+.statistics__container{
+    margin-bottom: 48px;
+}
+.statistic-heading{
+    font-size: 20px;
+    text-align: center;
+}

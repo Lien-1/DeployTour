@@ -1,9 +1,77 @@
 <link rel="stylesheet" href="/css/staffs.css">
-{{#each nhanviens}}
+{{!-- {{#each nhanviens}}
 <p>{{this.TenNhanVien}}</p>
-{{/each}}
-<a href="/staffs/addNewStaff">add new staffs</a>
+{{/each}} --}}
 
+{{!-- <a href="/staffs/addNewStaff">add new staffs</a> --}}
+<div class="staff__header">
+    <div class="staff__search">
+        <div class="staff__search-icon">
+        <i class="fas fa-search"></i>
+        </div>
+        <input type="text" class="staff__search-input" placeholder="Search...">
+    </div>
+    <div class="staff__add">
+        <a href="/staffs/addNewStaff">
+        <div class="staff__add-btn">
+            <i class="staff__add-icon fas fa-plus"></i>
+        </div>
+        </a>
+    </div>
+</div>
+<div class="staff__container">
+    <h2 class="staff__container-name">Danh sách nhân viên</h2>
+    <table class="staff__container-list">
+        <tr>
+            <th>Mã nhân viên</th>
+            <th>Họ và tên</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Vị trí</th>
+            <th>Trạng thái</th>
+        </tr>
+        <tr>
+            <td>MN001</td>
+            <td>Trương Thị Kim Liên</td>
+            <td>0382604120</td>
+            <td>Hà Thanh Hà Trung Thanh Hóa</td>
+            <td>Hướng dẫn viên</td>
+            <td>MT1</td>
+        </tr>
+        <tr>
+            <td>MN001</td>
+            <td>Trương Thị Kim Liên</td>
+            <td>0382604120</td>
+            <td>Hà Thanh Hà Trung Thanh Hóa</td>
+            <td>Hướng dẫn viên</td>
+            <td>MT1</td>
+        </tr>
+        <tr>
+            <td>MN001</td>
+            <td>Trương Thị Kim Liên</td>
+            <td>0382604120</td>
+            <td>Hà Thanh Hà Trung Thanh Hóa</td>
+            <td>Hướng dẫn viên</td>
+            <td>MT1</td>
+        </tr>
+        <tr>
+            <td>MN001</td>
+            <td>Trương Thị Kim Liên</td>
+            <td>0382604120</td>
+            <td>Hà Thanh Hà Trung Thanh Hóa</td>
+            <td>Hướng dẫn viên</td>
+            <td>MT1</td>
+        </tr>
+        <tr>
+            <td>MN001</td>
+            <td>Trương Thị Kim Liên</td>
+            <td>0382604120</td>
+            <td>Hà Thanh Hà Trung Thanh Hóa</td>
+            <td>Hướng dẫn viên</td>
+            <td>MT1</td>
+        </tr>
+    </table>
+</div>
 
 {{!-- những đoạn code liên quan đến page này thì code ở link dưới nó nằm trong thư mục public --}}
 <script src="util/staffs.js"></script>

@@ -1,0 +1,69 @@
+.addtg__header{
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+}
+.addtg__header-back{
+    
+}
+.addtg__header-back-link{
+    color: #00ab55;
+}
+.addtg__heading{
+    margin: 0 16px;
+    font-size: 24px;
+    flex: 1;
+    text-align: center;
+}
+
+.addtg__container{
+    margin: 16px 32px;
+}
+.addtg__container-info{
+    display: grid;
+    grid-template-columns: 20% 30% 50%;
+    margin-bottom: 16px;
+}
+.addtg__container-label{
+    font-size: 16px;
+    margin: auto 0;
+}
+.addtg__container-input{
+    padding: 8px 6px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    outline: none;
+}
+.addtg__container-header{
+    font-size: 20px;
+    margin: 24px 0;
+}
+    /* .addtg__container-tourist-info{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    } */
+.addtg__container-select{
+    font-size: 14px;
+    padding: 8px 8px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    outline: none;
+}
+.item-add-new-line{
+    margin-bottom: 24px;
+}
+.item-add-new-tourist{
+    font-size: 18px;
+    font-weight: 600;
+}
+.addtg__container-btn{
+    text-align: center;
+    margin-top: 32px;
+}
+.container-add-new-header{
+    display: flex;
+    align-items: center;
+}
+.button-add-new-khachhang{
+    margin-left: 16px;
+}

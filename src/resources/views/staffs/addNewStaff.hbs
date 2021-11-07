@@ -1,7 +1,46 @@
-<p>{{MaNhanVien}}</p>
-<form action="">
+<link rel="stylesheet" href="/css/addStaffs.css">
+{{!-- <p>{{MaNhanVien}}</p> --}}
+<div class="addstaffs">
+    <div class="addstaffs__header">
+        <div class="addstaffs__header-back">
+            <a href="/staffs" class="addstaffs__header-back-link">
+                <i class=" fas fa-chevron-left"></i>
+            </a>
+        </div>
+        <h3 class="addstaffs__heading">Thêm nhân viên mới</h3>
+    </div>
+    <div class="addstaffs__container" >
+            <div class="addstaffs__container-info">
+                <label class="addstaffs__container-label" for="">Mã nhân viên:</label>
+                <input class="addstaffs__container-input" type="text" name="1-HoTen" id="">
+            </div>
+            <div class="addstaffs__container-info">
+                <label class="addstaffs__container-label" for="">Họ và tên:</label>
+                <input class="addstaffs__container-input"t type="text" name="1-CMND" id="">
+            </div>
+            <div class="addstaffs__container-info">
+                <label class="addstaffs__container-label" for="">Địa chỉ:</label>
+                <input class="addstaffs__container-input"t type="text" name="1-CMND" id="">
+            </div>
+            <div class="addstaffs__container-info">
+                <labe class="addstaffs__container-label" for="">Số điện thoại:</labe>
+                <input class="addstaffs__container-input" type="text" name="1-SDT" id="">
+            </div>
+            <div class="addstaffs__container-info">
+                <label  class="addstaffs__container-label"for="">Vị trí:</label>
+                <select class="addstaffs__container-select" name="1-GioiTinh" id="">
+                    <option value="Tài xế xe trung chuyển">Tài xế xe trung chuyển</option>
+                    <option value="Hướng dẫn đoàn tham quan">Hướng dẫn đoàn tham quan</option>
+                </select>
+            </div>
+            <div class="addstaffs__container-btn">
+            <button>LƯU THÔNG TIN</button>
+            </div>
+        </div>
+</div>
+{{!-- <form action="">
     <div>
         <label for="">Ten nhan vien</label>
         <input type="text"value="{{MaNhanVien}}">
     </div>
-</form>
+</form> --}}

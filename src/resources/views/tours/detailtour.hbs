@@ -1,8 +1,19 @@
 <link rel="stylesheet" href="/css/detailTour.css">
 {{!-- source --}}
 
-<div style="margin: 10px;">
-    <table style="width:auto">
+<div class="detailtour__header">
+    <div class="detailtour__header-back" id="border-icon-back-detail-tour">
+        <a href="/dashboard" class="detailtour__header-back-link">
+            <i class=" fas fa-chevron-left" ></i>
+        </a>
+    </div>
+     {{#each detailTour}}
+    <h3 class="detailtour__heading">Tour : {{this.TenTour}}</h3>
+    <span class="title-detail-tour timetour">( {{this.ThoiGianTour}} )</span>
+     {{/each}}
+</div>
+<div class="detailtour__container" style="margin: 16px 32px;">
+    {{!-- <table style="width:auto">
         <tr>
             <td id="border-icon-back-detail-tour">
                 <a href="/dashboard" style="text-decoration: none;">
@@ -16,35 +27,35 @@
             </td>
             {{/each}}
         </tr>
-    </table>
+    </table> --}}
 
     <p class="header-title">Các địa điểm nổi tiếng</p>
     {{!-- list img --}}
-    <div style="display: grid;grid-template-columns: 25% 25% 25% 25% ;grid-auto-rows:150px;margin:10px 50px 10px 50px">
+    <div class="detailtour__img" >
         {{#each img}}
-        <div>
+        <div class="detailtour__img-pic" >
             <img src="{{this.url}}" alt="" class="tour-img">
         </div>
         {{/each}}
     </div>
-    <p class="header-title">Mô tả</p>
+    <p class="header-title header-title-descpt">Mô tả</p>
     <p class="detail-tour">
         {{#each detailTour}}
         {{this.MoTa}}
         {{/each}}
     </p>
-    <p class="header-title">Lịch trình cụ thể</p>
-    <div>
+    <p class="header-title header-title-descpt">Lịch trình cụ thể</p>
+    <div class="discrpition">
         {{#each detailLichTrinh}}
-        <div style="display: grid;grid-template-columns: 45% 10% 45%;">
-            <div style="text-align: right;">
+        <div  class="discrpition-detail" style="display: grid;grid-template-columns: 45% 10% 45%;">
+            <div >
                 <span>{{this.NgayGio}}</span>
                 <span>11:20 - 12:40</span>
             </div>
-            <div style="position: relative;float: left;">
-                <i class="fas fa-map-marker-alt" style="width: 100px;height: 30px;color: rgb(44, 89, 173);"></i>
-                <p style="border-left: 3px dashed rgb(44, 89, 173);height:60%;margin-left: 49%">
-                </p>
+            <div class="local-icon">
+                <i class="fas fa-map-marker-alt"></i>
+                {{!-- <p style="border-left: 3px dashed rgb(44, 89, 173);height:60%;margin-left: 49%">
+                </p> --}}
             </div>
             <div style="text-align: left;">
                 <span>Nội dung:</span>

@@ -1,4 +1,14 @@
-<div style="display: grid; grid-template-columns: 50% 50%;margin: 10px 10px 10px 10px;">
+<link rel="stylesheet" href="/css/dashboard.css">
+<div class="dashboad__header">
+    <h3 class="dashboad__heading">Hi, Welcome back</h3>
+    <div class="dashboad__search">
+        <input type="text" class="dashboad__search-input" placeholder="Search...">
+        <div class="dashboad__search-icon">
+        <i class="fas fa-search"></i>
+        </div>
+    </div>
+</div>
+<div class="dashboard-container">
     {{#each tour}}
     <div class="container-img-card">
         <a href="/tours/{{this.MaTour}}" class="tag-a-detail-tour">

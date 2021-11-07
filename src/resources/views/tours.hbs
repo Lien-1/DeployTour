@@ -1,5 +1,20 @@
 <link rel="stylesheet" href="/css/Tour.css">
-<div style="margin: 10px;">
+<div class="staff__header">
+    <div class="staff__search">
+        <div class="staff__search-icon">
+        <i class="fas fa-search"></i>
+        </div>
+        <input type="text" class="staff__search-input" placeholder="Search...">
+    </div>
+    <div class="staff__add">
+        <a class="button-open-add-new-item-overlay">
+        <div class="staff__add-btn">
+            <i class="staff__add-icon fas fa-plus"></i>
+        </div>
+        </a>
+    </div>
+</div>
+<div class="tours__container">
     <div class="container-search-content">
         <input type="checkbox" hidden id="checkbox-search-content" class="checkbox-search-content">
         <label for="checkbox-search-content">
@@ -14,10 +29,10 @@
             </div>
         </div>
     </div>
-    <div style="margin-top: 80px;"></div>
-    <div>
-        <span class="header-title">Thông tin tour hiện có </span>
-        <button class="button-open-add-new-item-overlay">Thêm tour mới</button>
+    {{!-- <div style="margin-top: 80px;"></div> --}}
+    <div class="tours__container-header">
+        <h3 class="header-title">Thông tin tour hiện có </h3>
+        {{!-- <button class="button-open-add-new-item-overlay">Thêm tour mới</button> --}}
     </div>
     {{!-- table --}}
     <div>

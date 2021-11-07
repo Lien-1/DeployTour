@@ -34,38 +34,68 @@
 </head>
 
 <body>
-    <div>
+    <div class="header">
+        <div class="header__item">
+            <div class="header__img">
+                <img src="/img/logo.png" alt="" class="header__img-pic">
+            </div>
+            <div class="header__maneger">
+                <div class="header__maneger-img">
+                    <img src="/img/avt.jpg" alt="" class="header__maneger-img-pic">
+                </div>
+                <div class="header__maneger-info">
+                    <h3 class="header__maneger-info-name">Maneger</h3>
+                    <span class="header__maneger-info-email">admin123@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <div id="layout-left-container">
-            <img src="/img/logo.png" alt="" style="width: 80%;height: 120px;margin: 20px;">
-            <div class="container-item-tag ">
-                <i class="fas fa-tachometer-alt container-item-tag-icon"></i>
-                <span>
-                    <a href="/dashboard" class="container-item-tag-header">Dashboard</a>
-                </span>
+            <div class="container-item-list">
+                <div class="container-item-tag ">
+                    <div class="container-item-tag-icons">
+                    <i class="fas fa-tachometer-alt container-item-tag-icon"></i>
+                    </div>
+                    <span>
+                        <a href="/dashboard" class="container-item-tag-header">Dashboard</a>
+                    </span>
+                </div>
+                <div class="container-item-tag ">
+                    <div class="container-item-tag-icons">
+                    <i class="fas fa-user container-item-tag-icon"></i>
+                    </div>
+                    <span>
+                        <a href="/staffs" class="container-item-tag-header">Staffs</a>
+                    </span>
+                </div>
+                <div class="container-item-tag ">
+                    <div class="container-item-tag-icons">
+                    <i class="fas fa-users container-item-tag-icon"></i>
+                    </div>
+                    <span>
+                        <a href="/customers" class="container-item-tag-header">Tourist Groups</a>
+                    </span>
+                </div>
+                <div class="container-item-tag ">
+                    <div class="container-item-tag-icons">
+                    <i class="fas fa-torii-gate container-item-tag-icon"></i>
+                    </div>
+                    <span>
+                        <a href="/tours" class="container-item-tag-header">Tours</a>
+                    </span>
+                </div>
+                <div class="container-item-tag ">
+                    <div class="container-item-tag-icons">
+                    <i class="fas fa-chart-pie container-item-tag-icon"></i>
+                    </div>
+                    <span>
+                        <a href="/statistics" class="container-item-tag-header">Statistics</a>
+                    </span>
+                </div>
             </div>
-            <div class="container-item-tag ">
-                <i class="fas fa-user container-item-tag-icon"></i>
-                <span>
-                    <a href="/staffs" class="container-item-tag-header">Staffs</a>
-                </span>
-            </div>
-            <div class="container-item-tag ">
-                <i class="fas fa-users container-item-tag-icon"></i>
-                <span>
-                    <a href="/customers" class="container-item-tag-header">Tourist Groups</a>
-                </span>
-            </div>
-            <div class="container-item-tag ">
-                <i class="fas fa-torii-gate container-item-tag-icon"></i>
-                <span>
-                    <a href="/tours" class="container-item-tag-header">Tours</a>
-                </span>
-            </div>
-            <div class="container-item-tag ">
-                <i class="fas fa-chart-pie container-item-tag-icon"></i>
-                <span>
-                    <a href="/statistics" class="container-item-tag-header">Statistics</a>
-                </span>
+            <div class="container__img">
+                <img src="/img/pic.png" alt="" class="container__img-pic">
             </div>
         </div>
         <!--layout  right -->
@@ -95,7 +125,7 @@
         $('#divMain').css('padding-left', '0px')
     }
     else {
-        $('#layout-left-container').css('display', 'block')
+        $('#layout-left-container').css('display', 'flex')
         $('#divMain').css('padding-left', '280px')
     }
 </script>

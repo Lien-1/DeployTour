@@ -1,0 +1,36 @@
+.dashboad__header{
+    padding: 24px 32px;
+}
+.dashboad__heading{
+    margin: 0 0 24px 0;
+    font-size: 20px;
+    color: #212B36;
+}
+.dashboad__search{
+    width: 100%;
+    border: 1px solid #929DA7;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.dashboad__search-input{
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+.dashboad__search-icon{
+    font-size: 15px;
+    padding: 8px 8px;
+    cursor: pointer;
+}
+.dashboard-container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 16px 32px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.125);
+}

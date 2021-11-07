@@ -1,67 +1,94 @@
-<div style="margin: 10px;padding:10px">
-    <a href="/customers">Back(nhấn vào để lui lại)</a>
+<link rel="stylesheet" href="/css/addTouristGroup.css">
+<div class="addtg__header">
+    <div class="addtg__header-back">
+        <a href="/customers" class="addtg__header-back-link">
+            <i class=" fas fa-chevron-left"></i>
+        </a>
+    </div>
+    <h3 class="addtg__heading">Thêm đoàn du lịch mới</h3>
+</div>
+<div class="addtg__container">
+    {{!-- <a href="/customers">Back(nhấn vào để lui lại)</a> --}}
     <form action="/handle/addDoanDuLich" method="POST">
         <input type="text" name="totalNhanViens[]" id="input-list-nhanvientour" hidden>
         <input type="text" name="CheckFinish" id="" value="false" hidden>
         <input type="text" name="SoThuTuDiaDiem" id="" value="0" hidden>
         <input type="text" value="1240000" name="ChiPhi" id="input-ChiPhi-real" hidden>
-        <div>
-            <label for="">MaDoan</label>
-            <input type="text" name="MaDoan" id="" value="{{MaDoan}}" readonly>
+        <div class="addtg__container-info">
+            <label class="addtg__container-label" for="">Mã đoàn</label>
+            <input class="addtg__container-input" type="text" name="MaDoan" id="" value="{{MaDoan}}" readonly>
         </div>
-        <p>Nhập thông tin đoàn du lịch</p>
+        <h4 class="addtg__container-header">Nhập thông tin đoàn du lịch</h4>
         <div>
-            <div>
-                <label for="">TenDoan</label>
-                <input type="text" name="TenDoan" id="">
-                <label for="">NgayKhoiHanh</label>
-                <input type="date" id="input-date-NgayKhoiHanh">
+            <div class="addtg__container-tourist-info" >
+                <div class="addtg__container-info">
+                    <label class="addtg__container-label" for="">Tên đoàn</label>
+                    <input class="addtg__container-input" type="text" name="TenDoan" id="">
+                </div>
+                <div class="addtg__container-info">
+                    <label class="addtg__container-label" for="">Ngày khởi hành</label>
+                    <input class="addtg__container-input" type="date" id="input-date-NgayKhoiHanh">
+                </div>
                 <input type="text" name="NgayKhoiHanh" id="input-real-date-NgayKhoiHanh" hidden>
             </div>
             <div>
-                <label for="">Chọn tour muốn đi</label>
-                <select name="MaTour" id="">
+                 <div class="addtg__container-info">
+                <label class="addtg__container-label" for="">Chọn tour muốn đi</label>
+                <select class="addtg__container-select" name="MaTour" id="">
                     {{#each tours}}
                     <option value="{{this.MaTour}}">{{this.TenTour}}</option>
                     {{/each}}
                 </select>
+                 </div>
             </div>
         </div>
         {{!-- Nhập thông tin hành khách trong đoàn --}}
         <div id="container-add-new-khachhang">
-            <span>Nhập thông tin hành khách trong đoàn</span>
-            <button class="button-add-new-khachhang">Thêm khách hàng</button>
+            <div class="container-add-new-header">
+                <h4 class="addtg__container-header">Nhập thông tin hành khách trong đoàn</h4>
+                <button class="button-add-new-khachhang">Thêm khách hàng</button>
+            </div>
             <div class="item-add-new-khachhang">
-                <div>
-                    <span>Khách hàng 1</span>
+                <div class="item-add-new-line">
+                    <span class="item-add-new-tourist">Khách hàng 1</span>
                     {{!-- <div class="delete-new-khachhang" style="cursor: pointer;">
                         <i class="fas fa-trash-alt"></i>
                     </div> --}}
                 </div>
                 <div>
-                    <label for="">Tên khách hàng:</label>
-                    <input type="text" name="1-HoTen" id="">
-                    <label for="">CMND:</label>
-                    <input type="text" name="1-CMND" id="">
-                    <label for="">GioiTinh:</label>
-                    <select name="1-GioiTinh" id="">
+                    <div class="addtg__container-info">
+                        <label class="addtg__container-label" for="">Tên khách hàng:</label>
+                        <input class="addtg__container-input" type="text" name="1-HoTen" id="">
+                    </div>
+                    <div class="addtg__container-info">
+                        <label class="addtg__container-label" for="">CMND/CC:</label>
+                        <input class="addtg__container-input"t type="text" name="1-CMND" id="">
+                    </div>
+                    <div class="addtg__container-info">
+                    <label  class="addtg__container-label"for="">Giới tính:</label>
+                    <select class="addtg__container-select" name="1-GioiTinh" id="">
                         <option value="Nam">Nam</option>
                         <option value="Nữ">Nữ</option>
                     </select>
-                    <label for="">SDT</label>
-                    <input type="text" name="1-SDT" id="">
+                    </div>
+                    <div class="addtg__container-info">
+                        <labe class="addtg__container-label" for="">Số điện thoại:</labe>
+                        <input class="addtg__container-input" type="text" name="1-SDT" id="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div>
-            <span>Tổng Chi phí :</span>
-            <input type="text" value="1240000" readonly id="input-ChiPhi"
+        <div class="addtg__container-info">
+            <span class="addtg__container-label">Tổng Chi phí :</span>
+            <input class="addtg__container-input" type="text" value="1240000" readonly id="input-ChiPhi"
                 style="border: transparent;outline:none;cursor:pointer">
-            <button>Lưu thông tin</button>
+        </div>
+        <div class="addtg__container-btn">
+            <button>LƯU THÔNG TIN</button>
         </div>
     </form>
     <div>
-        <p>Danh sách các nhân viên hỗ trợ tour du lịch của bạn :</p>
+        <h4 class="addtg__container-header">Danh sách các nhân viên hỗ trợ</h4>
         <div>
             <table>
                 <tr>
@@ -84,8 +111,8 @@
                 {{/each}}
             </table>
         </div>
-        <div>
-            <button id="button-cofirm-addNhanVienTours">Xác nhận</button>
+        <div class="addtg__container-btn">
+            <button id="button-cofirm-addNhanVienTours">XÁC NHẬN</button>
         </div>
     </div>
 </div>

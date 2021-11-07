@@ -1,28 +1,84 @@
-.header-title {
-    font-weight: 700;
-    font-size: 24px;
-    color: #212b36;
+/* Header */
+.header{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.header__item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.header__img-pic{
+    height: 50px;
+}
+.header__maneger{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    margin-right: 32px;
+}
+.header__maneger-img{
+    margin-right: 16px;
+}
+.header__maneger-img-pic{
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+.header__maneger-info-name{
     margin: 0;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.header__maneger-info-email{
+    font-size: 13px;
 }
 
+.header-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #212b36;
+    margin: 0;
+    margin-bottom: 24px;
+}
+
+/* Container */
+.container{
+    margin-top: 50px;
+}
+.container-item-list{
+    margin-top: 32px;
+}
 #layout-left-container {
     border-right: 1px rgb(235, 234, 234) solid;
     width: 280px;
     position: fixed;
-    top: 0;
+    top: 50px;
     bottom: 0;
     left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-
+.container__img{
+    text-align: center;
+    margin-bottom: 0;
+}
 button {
     color: white;
     background-color: #00ab55;
-    font-size: 15px;
+    font-size: 14px;
     border: transparent;
     border-radius: 10px;
-    padding: 5px 10px 5px 10px;
+    padding: 8px 16px;
     cursor: pointer;
 }
 
@@ -66,6 +122,13 @@ tr {
 
 .container-item-tag {
     padding: 15px 10px 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.container-item-tag:hover .container-item-tag-icon,
+.container-item-tag:hover .container-item-tag-header{
+    color: #00ab55;
 }
 
 .container-item-tag-header {
@@ -73,11 +136,14 @@ tr {
     color: #637381;
     font-size: 16px;
 }
-
+.container-item-tag-icons{
+    width: 30px;
+    margin-right: 16px;
+}
 .container-item-tag-icon {
     color: #637381;
     margin-right: 20px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .container-item-tag:hover {
@@ -104,9 +170,9 @@ tr {
 
 .container-img-card {
     position: relative;
-    width: 450px;
-    height: 300px;
-    margin: 10px 10px 10px 10px;
+    width: 525px;
+    height: 350px;
+    margin: 16px auto;
 }
 
 .img-headerPosition {
@@ -118,7 +184,7 @@ tr {
 
 .overlay-img-headerPosition {
     position: absolute;
-    top: 60%;
+    top: 70%;
     bottom: 0;
     right: 0;
     left: 0;
@@ -128,17 +194,17 @@ tr {
 }
 
 .overlay-inside-date {
-    color: #a4b9cb;
+    color: #ccc;
     font-size: 12px;
     font-weight: 700;
-    margin: 10px;
+    margin: 16px;
 }
 
 .overlay-inside-title {
     color: white;
     font-size: 20px;
     font-weight: 700;
-    margin: 10px;
+    margin: 16px 0 0 16px;
 }
 
 .overlay-inside-interaction {
@@ -146,6 +212,7 @@ tr {
     bottom: 0;
     right: 0;
     margin: 10px 10px 10px 10px;
+    display: none;
 }
 
 .overlay-inside-interaction-icon {

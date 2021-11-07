@@ -6,16 +6,31 @@
 <form action="/handle/finishDoanDuLich" method="POST" id="form-finish-doandulich">
     <input hidden type="text" name="MaDoan" id="input-form-finishDoanDuLich-MaDoan">
 </form>
-<div style="margin: 20px;">
+<div class="customer__header">
+    <div class="customer__search">
+        <div class="customer__search-icon">
+        <i class="fas fa-search"></i>
+        </div>
+        <input type="text" class="customer__search-input" placeholder="Search...">
+    </div>
+    <div class="customer__add">
+        <a href="" id="button-add-new-doandulich">
+        <div class="customer__add-btn">
+            <i class="customer__add-icon fas fa-plus"></i>
+        </div>
+        </a>
+    </div>
+</div>
+<div class="customer__container">
     <div>
-        <div>
-            <span>Thông tin các đoàn du lịch </span>
-            <select name="" id="information-doandulich">
+        <div class="customer__container-header">
+            <h3 class="customer__container-name">Thông tin các đoàn du lịch </h3>
+            <select class="customer__container-select" name="" id="information-doandulich">
                 <option value="all">All</option>
                 <option value="active">Active</option>
                 <option value="finished">Finished</option>
             </select>
-            <button id="button-add-new-doandulich">Thêm 1 đoàn mới</button>
+            {{!-- <button id="button-add-new-doandulich">Thêm 1 đoàn mới</button> --}}
         </div>
         {{!-- table đoàn du lịch --}}
         <div>
@@ -73,11 +88,11 @@
                     </td>
                 </tr>
                 {{/each}}
-            </table>
+            </table>    
         </div>
-        <div>
-            <p>Thông tin các khách hàng trong đoàn</p>
-            <select name="" id="information-khachhang">
+        <div class="customer__container-header">
+            <h3 class="customer__container-name">Thông tin các khách hàng trong đoàn</h3>
+            <select class="customer__container-select" name="" id="information-khachhang">
                 <option value="All">All</option>
                 {{#each doandulichs}}
                 <option value="{{this.MaDoan}}">{{this.MaDoan}}</option>
